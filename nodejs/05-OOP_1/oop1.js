@@ -219,3 +219,8 @@ const Mercedes = new carConstructor('Mercedes', 'C200', 2015)
 console.log(Mercedes.brand)
 console.log(Mercedes.startEngine())
 /* ------------------------------------------------------- */
+
+//? Polymorphism: Miras aldığımız sınıfın özellik/methodlarını yeniden yazabilme.
+//? - Override: Üst metodla aynı isim ve yapıda yeni bir metod yazma. (ezme / iptal etme / önceliğini alma)
+//? - Overload: Üst metodla aynı isimde ama farklı yapıda (farklı adet/tip) yeni method oluşturma. (aynı anda ikisi de aktif) (JS desteklemez)
+
