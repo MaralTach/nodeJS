@@ -1,0 +1,19 @@
+normal function ile arrow func arasyndaky fark arrow funk.lar global scopedyr
+arrow func ulusturdugumuz zaman ici disi bir birine karismis oluyor
+
+//callback fonsiyonlar async  fonksiyonlarda kullanilir
+// Function-1:                                  //buradaki parameter funksiyon
+const primaryFunction = function (parameter1, parameter2) {
+if (parameter1) {
+if (typeof parameter2== 'function') {
+// call 'parameter2' like a function.
+parameter2()
+} else {
+console.log('parameter2 is not a function')
+}
+// Function-2:
+const callbackFunction = function() {
+console.log('Runned callbackFunction')
+}
+// call 'primaryFunction' with 'callbackFunction' (instead of 'parameter2'):
+primaryFunction (true, callbackFunction) //> Runned callbackFunction
