@@ -99,27 +99,27 @@ console.log( Car.arrowMethod() )
 
 const testArray = ['value0', 'value1', 'value2', 'value3', 'value4']
 
-// const test0 = testArray[0]
-// const test1 = testArray[1]
-// const test2 = testArray[2]
-// // const test3 = testArray[3]
-// // const test4 = testArray[4]
-// const testPart = testArray.slice(3)
-// console.log(test0, test1, test2, testPart)
+const test0 = testArray[0]
+const test1 = testArray[1]
+const test2 = testArray[2]
+// const test3 = testArray[3]
+// const test4 = testArray[4]
+const testPart = testArray.slice(3)
+console.log(test0, test1, test2, testPart)
 
-// Sıralama Önemli:
-// const [var0, var1, ...varPart] = testArray
-// console.log(var0, var1, varPart)
-
-// REST Operator (Toplayıcı) (Eşitir ifadesinin sol tarafındaki REST operatördür.)
+Sıralama Önemli:
 const [var0, var1, ...varPart] = testArray
 console.log(var0, var1, varPart)
 
-// SPREAD Operator (Dağıtıcı/Serpiştirici) (Eşitir ifadesinin sağ tarafındaki SPREAD operatördür.)
+REST Operator (Toplayıcı) (Eşitir ifadesinin sol tarafındaki REST operatördür.)
+const [var0, var1, ...varPart] = testArray
+console.log(var0, var1, varPart)
+
+SPREAD Operator (Dağıtıcı/Serpiştirici) (Eşitir ifadesinin sağ tarafındaki SPREAD operatördür.)
 const newArr = [ ...testArray, 'value5', 'value6' ]
 console.log( newArr)
 
-/* ------------------------------------------------------- *
+/* ------------------------------------------------------- */
 //* OBJECT DESTRUCTURING:
 
 const Car = {
@@ -142,17 +142,17 @@ const Car = {
 }
 console.log(typeof Car, Car)
 
-REST Operator (KEY isimleri önemli!)
-const { brand, year, model, ...others } = Car
-console.log(brand, year, model, others)
+// REST Operator (KEY isimleri önemli!)
+// const { brand, year, model, ...others } = Car
+// console.log(brand, year, model, others)
 
-İsim değiştirme:
-const { brand, year, model: newName, ...others } = Car
-console.log(brand, year, newName, others)
+// İsim değiştirme:
+// const { brand, year, model: newName, ...others } = Car
+// console.log(brand, year, newName, others)
 
-SPREAD Operator:
-const newObj = { ...Car, newKey: 'newValue' }
-console.log(newObj)
+// SPREAD Operator:
+// const newObj = { ...Car, newKey: 'newValue' }
+// console.log(newObj)
 
 /* ------------------------------------------------------- */
 
@@ -167,8 +167,8 @@ console.log(newObj)
 
 // Array to JSON:
 // const arr = Object.keys(Car)
-// // const arr = Object.values(Car)
-// // const arr = Object.entries(Car) // enumarateType
+// const arr = Object.values(Car)
+// const arr = Object.entries(Car) // enumarateType
 // console.log(arr)
 // const arrToJSON = JSON.stringify(arr)
 // console.log(arrToJSON)
@@ -188,7 +188,7 @@ console.log(newObj)
 // console.log(typeof test, test)
 
 /* ------------------------------------------------------- *
-// CONTRUCTOR FUNCTIONS:
+! CONTRUCTOR FUNCTIONS:
 
 const contructorFunction = function () {
     this.property = 'value'
@@ -209,4 +209,13 @@ const carConstructor = function (brand, model, year = 2000) {
 
 }
 
+//* new ile olusturulan objeler PascalCase ile olusturulur.
+
+const newCar = new carConstructor('Ford', 'Mustang', 1967)
+
+console.log(typeof newCar, newCar)
+
+const Mercedes = new carConstructor('Mercedes', 'C200', 2015)
+console.log(Mercedes.brand)
+console.log(Mercedes.startEngine())
 /* ------------------------------------------------------- */
