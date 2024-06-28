@@ -6,7 +6,7 @@
 //? DRY: Don't Repeat Yourself
 //? BLUEPRINT: Taslak (Mimarların kullandığı mavi şablon kağıdı)
 //? CLASS: Obje türetmek için kullanılacak şablon.
-/* ------------------------------------------------------- *
+/* ------------------------------------------------------- */
 //* Class Declaration:
 
 // Class isimleri PascalCase yapıdadır:
@@ -24,12 +24,13 @@ const PascalNameCase = class {
         return 'this is a method'
     }
     // Aşağıdaki yöntem class içinde kullanılmaz:
-    // methodName = function() {}
+    methodName = function() {}
 }
 
-//? INSTANCE = Bir class'tan türetilen objedir.
-//? Intance isimleri de PascalCase yapıdadır.
-const NewObj = new PascalNameCase()
+// ? INSTANCE = Bir class'tan türetilen objedir.
+// ? Intance isimleri de PascalCase yapıdadır.
+const NewObj = new PascalNameCase() 
+//*bir klasdan obje turetilirken () (parantez kullaniyoruz)
 console.log(NewObj)
 console.log(NewObj.methodName())
 
@@ -262,8 +263,9 @@ const _alttanTireIleBaslayan = BU bir proctected değişkendir. Developer olarak
 class Car {
 
     isRunning = false
+    #price = 99
 
-    constructor(brand, model, year, vehicleType) {
+    constructor(brand, model, year) {
         this.brand = brand
         this.model = model
         this.year = year
@@ -273,14 +275,50 @@ class Car {
     runEngine() {
         this.isRunning = true
         console.log('Engine started')
-        console.log(this.vehicleIsActive) // public: erişebilir, protected: erişebilir, private: erişemez.
         return this.isRunning
     }
+
+    get getPrice() {
+        console.log('Fiyat yazılıyor:')
+        return this.#price
+    }
+
+    set setPrice(price) {
+        console.log('Fiyat güncellendi.')
+        this.#price = price
+    }
+
+    // Statics:
+
+    static staticProp = 'bu bir static değerdir.'
+
+    static staticMethod() {
+        return 'bu bir static methoddur.'
+    }
+
 }
 
 const Ford = new Car('Ford', 'Mustang', 1967)
-console.log(Ford)
+// console.log(Ford)
+// // console.log(Ford.price) // Private olduğu için erişilemez.
+// // console.log(Ford.getPrice()) // Normal Method
+// console.log(Ford.getPrice) // Getter methodlar bir property gibi çağrılır. (parantez yok)
+// // Ford.setPrice(80000) // Normal method
+// Ford.setPrice = 80000 // Setter methodlar bir propertyy gibi güncellenebilir.
+// console.log(Ford.getPrice)
+
+//* STATICS
+// Static değerlere sadece ana CLASS ile erişilebilir.
+console.log( Car.staticProp )
+console.log( Car.staticMethod() )
+console.log( Car )
+// Static özellik/metodlara instance ile erişilemez.
+console.log( Ford.staticProp )
 
 
 /* ------------------------------------------------------- */
+//? ABSTRACTION: Soyutlama/Modelleme (Class ile obje üretebilme. Aynı amaç için kullanılan değişken ve methodların bir class içinde yazıyor olması)
+//? ENCAPCULLATION: Kapsülleme/Ayrıştırma (Kodların gizliliği, private değişkenlere erişilemiyor olması ve birbirinden bağımsız çalışmaları.)
 /* ------------------------------------------------------- */
+
+//* HAPPY CODDING :)
