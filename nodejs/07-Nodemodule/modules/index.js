@@ -32,13 +32,20 @@ function test3() {
     console.log('test3 çalıştı.')
 }
 
-module.exports = [
+
+//! birden fazla fonksiyonu Array olarak export edebilir.
+// module.exports = [
+//     test1,
+//     test2,
+//     test3
+// ]
+
+//? birden fazla fonksiyonu obje olarak export edebilir.
+module.exports={
     test1,
     test2,
-    test3
-]
-
-
+    test3   
+}
 /* -------------------------------------------- */
 /* -------------------------------------------- */
 /* -------------------------------------------- */

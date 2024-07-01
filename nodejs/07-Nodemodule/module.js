@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 /* -------------------------------------------- */
 // MODULES
 /* -------------------------------------------- */
@@ -18,6 +18,7 @@
 
 /* -------------------------------------------- */
 
+//! birden fazla fonksiyonu import edebilir.
 // const arrFunc = require('./modules/')
 // // console.log(arrFunc)
 // arrFunc[0]()
@@ -25,12 +26,25 @@
 // arrFunc[2]()
 
 // Array Destructuring:
-const [test1, test2, test3] = require('./modules/')
-test1()
-test2()
-test3()
+// const [test1, test2, test3] = require("./modules/");
+// test1();
+// test2();
+// test3();
 
-/* -------------------------------------------- */
+
+//! Object import edebilir.
+// const objFunc = require("./modules/");
+// objFunc.test1();
+// objFunc.test2();
+// objFunc.test3();
+
+//!Object Destructuring:
+const {test1, test2, test3} = require('./modules/');
+test1();
+test2();
+test3();
+
+/* -------------------------------------------- */ 
 /* -------------------------------------------- */
 /* -------------------------------------------- */
 /* -------------------------------------------- */
