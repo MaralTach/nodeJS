@@ -10,22 +10,22 @@ const http = require('node:http') //? BuiltIn Module.
 //? 2nokta ust uste (:) global demek npm i yapmaya gerek yok
 //? bunun amaci http istek servere cevap verir
 
-/* -------------------------------------- *
+/* -------------------------------------- */
 
-http.createServer( (request, response) => { ... } )
+// http.createServer( (request, response) => { ... } )
 
-const app = http.createServer((request, response) => {
+// const app = http.createServer((request, response) => {
 
-    response.end('Hello World')
-    console.log('Console Print')
+//     response.end('Hello World')
+//     console.log('Console Print')
 
-})
+// })
 
 // Default server domain (local domain) = localhost
 // Default server IP (local IP) = 127.0.0.1
-app.listen(8000, () => console.log('Server started: http://127.0.0.1:8000'))
+// app.listen(8000, () => console.log('Server started: http://127.0.0.1:8000'))
 
-/* -------------------------------------- *
+// /* -------------------------------------- *
 
 const app = http.createServer((req, res) => {
 
@@ -33,18 +33,17 @@ const app = http.createServer((req, res) => {
     // console.log(res)
     // console.log(req.url)
 
-    if (req.url == '/') {
+if (req.url== '/'){
+        
 
-        res.end('Main Page')
+        res.end("main page")
+    
+} else if (req.url == "/second"){
+        res.end("second page")
 
-    } else if (req.url == '/second') {
-
-        res.end('second page')
-
-    } else {
-
-        res.end('any page')
-    }
+}else {
+        res.end("404")
+}
 
 })
 
@@ -52,9 +51,9 @@ app.listen(8000, () => console.log('http://127.0.0.1:8000'))
 
 /* -------------------------------------- */
 
-const app = http.createServer((req, res) => {
+// const app = http.createServer((req, res) => {
 
-    if (req.url == '/api') {
+//     if (req.url == '/api') {
 
         // res.end('API') // res.end işlemi blocklar. devam eden kodlar çalışmaz.
 
@@ -64,10 +63,10 @@ const app = http.createServer((req, res) => {
         // res.write('Yazı-4')
         // res.end()
         
-        if (req.method == 'GET') {
+        // if (req.method == 'GET') {
 
             // setHeader (single headers)
-            res.setHeader('title', 'value')
+        //     res.setHeader('title', 'value')
             // writeHead(statusCode, {  multi headers })
             // Sonda yeralması gereken methodlardandır.
             // res.writeHead(400, {
@@ -75,31 +74,31 @@ const app = http.createServer((req, res) => {
             //     'multi-headers': 'test',
             // })
             // writeHead'de 2. parametre olarak statusMessage gönderebiliriz:
-            res.writeHead(400, 'Hatali Islem', {
-                'content-encoding': 'utf-8',
-                'multi-headers': 'test',
-            })
+        //     res.writeHead(400, 'Hatali Islem', {
+        //         'content-encoding': 'utf-8',
+        //         'multi-headers': 'test',
+        //     })
 
-            const obj = {
-                result: true,
-                message: 'Hello World'
-            }
-            res.write(JSON.stringify(obj))
+        //     const obj = {
+        //         result: true,
+        //         message: 'Hello World'
+        //     }
+        //     res.write(JSON.stringify(obj))
             
             // En sonda yer almalıdır:
-            res.end()
+//             res.end()
 
-        } else {
+//         } else {
 
-            res.end('Wrong Method')
-        }
+//             res.end('Wrong Method')
+//         }
 
-    } else {
+//     } else {
 
-        res.end('HTML')
-    }
+//         res.end('HTML')
+//     }
 
-}).listen(8000, () => console.log('http://127.0.0.1:8000'))
+// }).listen(8000, () => console.log('http://127.0.0.1:8000'))
 
 /* -------------------------------------- */
 /* -------------------------------------- */
