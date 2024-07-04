@@ -14,72 +14,83 @@ JSON stringfy ve parse metotlarini kullanmaya gerek kalmiyor
 Express'in temel amaci developeri hizlandirmaktir
 /* ----------------------------------------------- */
 
-MVC: Model, View, Controller 
+// ! MVC: Model, View, Controller 
 
-Modeller: isin Data tarafina bakicak 
-View: isin goruntiuleme tarafini yapicak.Kullanicilara goruntuleme
-Controller: Kordinotor.
-Mesela bir kullanici butona basicak View onu => Controllere gonderecek Controllerde => Modele gonderecek data almasi icin
-
-
-/* ----------------------------------------------- */
-
-NodeJS express nasil calisir?
-
-1.Web servisi URL ile gelir 
-2. Url'yi Route-ler karsilar (routlar burada DANISMAN Ve YONLENDIRICI goreveni yapar)
-3.Router'lar ilgili Controllere gonderer mesela /login dediginde Logine gideceksin /user geldigi zaman usera gidecek
-
-4. Ornegin user Logina gondermesi icin CONTROLLER kontol yapar login password geldimi? 
-5. paswordlardan model sorumludur ve modeldeki bilgileri kontrol eder. ve boyle bir pasword varsa  modelden true gelir ve VIEW'a gecebilir kullanici
-6. Model'de tek basina hareket etmez Controllerden aldigi emiri yerine getir ve cevabi yine kontrollere gonderir
+// Modeller: isin Data tarafina bakicak 
+// View: isin goruntiuleme tarafini yapicak.Kullanicilara goruntuleme
+// Controller: Kordinotor.
+// Mesela bir kullanici butona basicak View onu => Controllere gonderecek Controllerde => Modele gonderecek data almasi icin
 
 
 /* ----------------------------------------------- */
+
+// NodeJS express nasil calisir?
+
+// 1.Web servisi URL ile gelir 
+// 2. Url'yi Route-ler karsilar (routlar burada DANISMAN Ve YONLENDIRICI goreveni yapar)
+// 3.Router'lar ilgili Controllere gonderer mesela /login dediginde Logine gideceksin /user geldigi zaman usera gidecek
+
+// 4. Ornegin user Logina gondermesi icin CONTROLLER kontol yapar login password geldimi? 
+// 5. paswordlardan model sorumludur ve modeldeki bilgileri kontrol eder. ve boyle bir pasword varsa  modelden true gelir ve VIEW'a gecebilir kullanici
+// 6. Model'de tek basina hareket etmez Controllerden aldigi emiri yerine getir ve cevabi yine kontrollere gonderir
+
+
 /* ----------------------------------------------- */
-
-
-
+/* ----------------------------------------------- */
 
 
 // https://expressjs.com/
 // $ npm i express dotenv
 
-const express = require('express')
-const app = express()
+const express = require('express')  // express import edildi
+const app = express()   // expressi app degiskenine atadik  ve artik bu app express frameworku oldu 
 
 /* ----------------------------------------------- */
+// dotenv calistirmak icin  (proses .envden data alabilmek icin config metodunu calistirdik)
+require ('dotenv').config()
+
+const PORT = process.env.PORT || 8000  
+app.listen(PORT, () => console.log('Running: http://127.0.0.1:' + PORT)) //Port kacsa onu yazdiracak +Port
+
+
+/* ----------------------------------------------- */
+/* ----------------------------------------------- */
+
+//onceki dersten ornek olarak bu kodu yazmisti hocamiz. eger express kullanmazsak herseyi bu kodun icinde yazmamiz gerekiyor . eger express kullanmasaydik her metedu if'lerle sorgulamamiz gerekiyor
 // http.createServer((req, res) => {
-//     if (req.url = '/') {
-//         if (req.method == 'GET') {
+//     if (req.url = '/') {   //url kontrolu 
+//         if (req.method == 'GET') {   //get metedunu sorgulamak 
 //         } else {
 //         }
 //     } else if (req.url = '/second') {
 //     }
 // })
 
-app.get('/', (req, res) => {
-    // res.end('app.get çalıştı')
-    // const obj = {
-    //     error: false,
-    //     message: 'Welcome'
-    // }
-    // res.end(JSON.stringify(obj))
 
-    // SEND METHOD:
-    // res.send('Welcome to World')
-    // res.send({
-    //     error: false,
-    //     message: 'Welcome'
-    // })
-    // res.send([0, 1, 2])
+//express kullanirsak 
+//app.get yazdik if get'e gerek kalmadi  
+app.get('/', (req, res) => {  //1.parametresi url 2. parametresi callback
+    res.end('app.get çalisti')
+     const obj = {
+       error: false,
+       message: 'Welcome'
+    }
+    res.end(JSON.stringify(obj))
 
-    // STATUS METHOD:
-    // res.status(404)
-    // res.send({
-    //     error: false,
-    //     message: 'Page Not Found'
-    // })
+    //  SEND METHOD:
+     res.send('Welcome to World')
+     res.send({
+       error: false,
+         message: 'Welcome'
+     })
+    res.send([0, 1, 2])
+
+    //  STATUS METHOD:
+     res.status(404)
+     res.send({
+        error: false,
+        message: 'Page Not Found'
+     })
 
     // Output:
     res.status(404).send({
@@ -97,6 +108,10 @@ app.put('/', (req, res) => {
 app.delete('/', (req, res) => {
     res.end('app.delete çalıştı')  
 })
+//tek url'ye 4farkli yontemle metodda karsiliyoruz
+
+
+// ve daha sonra thunder'da new collection new request ile test ettik 
 /* ----------------------------------------------- */
 
 // app.get('/', (req, res) => { res.end('app.get çalıştı')})
@@ -199,15 +214,10 @@ app.get('/*', (req, res) => {
 // console.log(__dirname)
 // app.get('/package', (req, res) => { res.sendFile(__dirname + '/package.json') }) // dosya yolu TAM (gerçek) olmalı
 // redirect()
-app.get('/clarusway', (req, res) => { res.redirect('https://clarusway.com') }) // Varsayılan 302'dir
+// app.get('/clarusway', (req, res) => { res.redirect('https://clarusway.com') }) // Varsayılan 302'dir
 // app.get('/301', (req, res) => { res.redirect(301, 'https://clarusway.com') }) // Kalıcı yönlendirme yapar.
 // app.get('/302', (req, res) => { res.redirect(302, 'https://google.com') }) // Geçici yönlendirme yapar.
 
 
 
 /* ----------------------------------------------- */
-// dotenv çalıştır:
-require('dotenv').config()
-const PORT = process.env.PORT || 8000
-
-app.listen(PORT, () => console.log('Running: http://127.0.0.1:' + PORT))
