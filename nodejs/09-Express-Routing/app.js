@@ -71,14 +71,23 @@ app.listen(PORT, () => console.log('Running: http://127.0.0.1:' + PORT)) //Port 
 //app.get yazdik if get'e gerek kalmadi  
 app.get('/', (req, res) => {  //1.parametresi url 2. parametresi callback
     res.end('app.get çalisti')
-     const obj = {
-       error: false,
-       message: 'Welcome'
-    }
-    res.end(JSON.stringify(obj))
+
+    //bir nodejs'de  objeyi tanimlamak icin obje olustururuz
+    //  const obj = {
+    //    error: false,
+    //    message: 'Welcome'
+    // }
+    //obje ciktisini almak icin
+    // res.end(JSON.stringify(obj))
 
     //  SEND METHOD:
-     res.send('Welcome to World')
+    //experess'de obje tanimlamak icin send metodu kullanilir
+    
+    //*  res.send('Welcome to World')
+     
+     //send metodu obje JSON'a donusturur[stringfy yazmaya gerek kalmaz]
+     //2tane send metdnunu ust uste yazamayiz send metodu kendinde end metodunuda barindirir ve en son olmasi gereken olarak tavsiye edilir
+ 
      res.send({
        error: false,
          message: 'Welcome'
@@ -86,12 +95,16 @@ app.get('/', (req, res) => {  //1.parametresi url 2. parametresi callback
     res.send([0, 1, 2])
 
     //  STATUS METHOD:
+
+
+// express'de default kod olarak degistirebiliyoruz
      res.status(404)
      res.send({
         error: false,
         message: 'Page Not Found'
      })
 
+     // bundan sonra kullanacagimiz metod  budur
     // Output:
     res.status(404).send({
         error: false,
@@ -110,8 +123,6 @@ app.delete('/', (req, res) => {
 })
 //tek url'ye 4farkli yontemle metodda karsiliyoruz
 
-
-// ve daha sonra thunder'da new collection new request ile test ettik 
 /* ----------------------------------------------- */
 
 // app.get('/', (req, res) => { res.end('app.get çalıştı')})
@@ -120,9 +131,11 @@ app.delete('/', (req, res) => {
 // app.delete('/', (req, res) => { res.end('app.delete çalıştı')})
 
 // ALL METHOD:
+// ALL yazdigimiz zaman butun metodlara izin verir.ama pek kullanilan bir sey degil
 // app.all('/', (req, res) => { res.end('app.all çalıştı')})
 
 // ROUTE METHOD:
+// url'ye tek bir defa tanimlayarak url'ye ayit metodlar bunlardir diyebiliriz 
 // app.route('/')
 //     .get((req, res) => { res.end('app.get çalıştı')})
 //     .post((req, res) => { res.end('app.post çalıştı')})
@@ -132,8 +145,13 @@ app.delete('/', (req, res) => {
 /* ----------------------------------------------- */
 // URL (path) Options:
 
+//
 // app.get('/', (req, res) => { res.send('burası anasayfa')}) // / == Anasayfa (home path)
-// app.get('/path', (req, res) => { res.send('burası "path" sayfası')}) // "/path" == "/path/"
+
+//anasayfada baska bir path'e gitmek istersek.
+// app.get('/path', (req, res) => { res.send('burası "path" sayfası')}) // "/path" == "/path/"  sonundaki slash olsada olmasada fark etmez
+
+
 
 // Express Joker karakterleri destekler: (RexExp kuralları ile aynı)
 // app.get('/abc(x?)123', (req, res) => { res.send('now in here: /abc(x?)123')}) // abc123 == abcx123
