@@ -22,7 +22,7 @@ app.get("/", (req, res, next) => {
     
    // next bir sonraki route'a gidecegi icin nextdan sonra kod yazmanin anlami yoktur
    
-        if(req.query.courseName == 'nodeJS'){
+        if (req.query.courseName == 'nodeJS'){
        next();
         }else{
        res.send({ message: "kurs ismi yanlis girildi" });
