@@ -3,6 +3,10 @@
     EXPRESSJS - ROUTING
 ------------------------------------------------------- */
 
+//* terminalden .env dosya olusturmak icin
+//? $ echo PORT=8000 > .env 
+
+
 const express = require("express");
 const app = express();
 
