@@ -15,11 +15,15 @@ const PORT = process.env.PORT || 8000;
 
 /* ------------------------------------------------------- */
 //? "Router" is special app for URL control in ExpressJS.
+// routerin kullanma amaci pathleri ayri bir dosyaya tasiyabilmek
+//router da bir applicatin dir ama sadece routing yapmak icindir
 
+//bu path routerdir
 // app.get("/", (req, res) => {
 //     res.send("Hello World!");
 // });
 
+//router tanimlamasi. router ozel bir applicationdir
 const router = express.Router();
 
 // router.get('/', (req, res) => { res.send({ message: 'Home Page' }) })
@@ -29,19 +33,20 @@ const router = express.Router();
 // router.delete('/', (req, res) => { res.send({ message: 'Delete Page' }) })
 
 //ortak urlede farkli metod kullanacaksak 
-router.route('/')
-    .get((req,res) => {res.send ("get")})
-    .post((req,res) => {res.send ("post")})
+// router.route('/')
+//     .get((req,res) => {res.send ("get")})
+//     .post((req,res) => {res.send ("post")})
 
 
 
 //Router tanimladiktan sonra app.use() yapilmali
 // app.use(router)
 
-
+//index diye ayri file actik ve orada tanimladigimiz routery import ettik
 // const router = require('./routes/')
 // app.use(router)
 
+//ana dosyaya /test diye bir path icine butun pathleri tanimla
 app.use('test',require('./routes/'))
  //app use kullanirken /path kullanabiliriz
 

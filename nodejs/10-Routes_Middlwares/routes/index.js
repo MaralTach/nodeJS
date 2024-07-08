@@ -4,7 +4,7 @@
 ------------------------------------------------------- */
 
 const router = require ('express').Router();
-//Router() bir applicationdir. tek farki url duzenleme amacli bir applicatindir
+//Router() bir applicationdir. tek farki url duzenleme amacli bir applicationdir
 
 router.get('/', (req, res) => { res.send({ message: 'Home Page' }) })
 router.get('/path', (req, res) => { res.send({ message: 'Path Page' }) })
@@ -18,5 +18,6 @@ router.delete('/', (req, res) => { res.send({ message: 'Delete Page' }) })
 //     .post((req,res) => {res.send ("post")})
 
 router.get('/user')
+
 
 module.exports = router
