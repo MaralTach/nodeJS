@@ -2,7 +2,7 @@
 /* -------------------------------------------------------
     EXPRESSJS - ROUTING
 ------------------------------------------------------- */
-
+//* router temel olarak sistemdeki urle yapimini ayri bir dosyaya tasimak icin ayri bir dosyadaki url yapimi .Router ile olusturup aplication'da app dememiz yeterli
 //* terminalden .env dosya olusturmak icin
 //? $ echo PORT=8000 > .env 
 

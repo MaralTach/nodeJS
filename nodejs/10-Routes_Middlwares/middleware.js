@@ -10,8 +10,9 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
 /* ------------------------------------------------------- */
-//? Middleware functions must be has three parameters. 
+//? Middleware functions must be has three parameters. res,req,next
 //? Last parameter is for next().
+//? middleware'i middleware yapan NEXT() dir
 
 //? Middleware:
 app.get("/", (req, res, next) => {
