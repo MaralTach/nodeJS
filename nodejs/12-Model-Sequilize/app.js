@@ -31,6 +31,7 @@ const {Sequelize, DataTypes} = require('sequelize')
 
 //Connection
 //Sequelize(parantezin icin kullanacagimiz veri tab. ismi ve sonra onun nerede oldugunu yaziyoruz)
+//sequelize instance dir
 // const sequelize = new Sequelize('sqlite:./db.sqlite3')
 // const sequelize = new Sequelize('sqlite:' + process.env.SQLITE)
 //.env de bulamazsa || ./db.sqlite3  bu kodu yazacagiz 
