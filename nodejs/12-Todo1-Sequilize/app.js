@@ -1,7 +1,9 @@
 "use strict";
 /* -------------------------------------------------------
     EXPRESSJS - TODO Project with Sequelize
+    
 ------------------------------------------------------- */
+//! Nodejs -de SQL veritabanlarini kullanmak icin, data islemlerini yapmak icin SEQUELIZE isimli modulu kullaniyoruz
 
 const express = require("express");
 const app = express();
@@ -25,8 +27,10 @@ app.use(express.json())
 /* ------------------------------------------------------- */
 //! SEQUELIZE
 // $ npm i sequelize sqlite3
+//hangi veri tabanini kullanicaksak onun modulunu install ediyoruz
 //sonra require yapacagiz  1.njisi Sequelize, 2.njsi Datatypes destr. ediyoruz
 
+//Sequelize indirdikten sonra require yapiyoruz ve sonra 2 tane objeyi requiredan destr olarak aliyoruz
 const {Sequelize, DataTypes} = require('sequelize')
 
 //Connection
@@ -46,13 +50,14 @@ const sequelize = new Sequelize('sqlite:' + (process.env.SQLITE || './db.sqlite3
 //sutun ozelliklerini {} icinde table name dan sonra yaziyoruz
 // mongodbde _id kullanilir
 //sutunlere obje kullanirken Datatypes kullaniyoruz
+
 const Todo = sequelize.define('todos', {
-  //id belirtmegimize gerek yok
+  //id belirtmegimize gerek yok. sequelize id sutununu otomatik olusturar 
     // id:{
     //     type:DataTypes.INTEGER, //DataType sutun veri tipi  //kesin kullanicagiz
     //     allowNull:false,    //default:true // sutun verisi bos olabilirmi //duruma gore kullanicagiz
     //     unique:true,        //default: false //  benzersiz kayitmi?
-    //     defaultValue:'', //kayit eklendiginde default olarak ne yailsin
+    //     defaultValue:'', //kayit eklendiginde default olarak ne yazilsin
     //     comment:"yorum icin",  
     //     primaryKey: true,       //default:false //tablonun her bir kaydini ifade edenbenzersiz numara
     //     autoIncrement:true,
@@ -82,12 +87,12 @@ const Todo = sequelize.define('todos', {
 })
 
 //sync veritabani 0 sa tablo yoksa olusturur. var tabloyu olusturmaz degisikligi algylamaz
-// sequelize.sync()
+//! sequelize.sync() CREATE TABLE 
 
-// degisikligi eklemek icin force:tru kullaniyoruz
+// degisikligi eklemek icin // !force:true  kullaniyoruz
 // sequelize.sync({force:true})
 
-//datalarin ucmamasi icin silinmemesi icin  alter:true
+//datalarin ucmamasi icin silinmemesi icin //! alter:true
 //her kaydetdigimizde ekliyor ve siliyor. onun icin bir kere calistiktan sonra yoruma alinmasi gerekiyor.cok ciddi hatalara yol acabilir 
 // sequelize.sync({ alter:true })
 
@@ -113,24 +118,39 @@ router.get('/', async (req,res)=>{
 
     //datalarin kayit sayisinida verir findAndCountAll()
        const data = await Todo.findAndCountAll()
+
+       res.status(200).send({
+        error: false,
+        result: data
+    }) 
 })
 
 
 
 //CREATE TODOyeni todo ekleme
 //* TODO metodlari async dir bunun icin await yapiyoruz ve routari async yapyoruz 
+//create veritabaninda kayit eder
 
 router.post('/', async (req,res)=>{
     const receivedData = req.body
     // console.log(receivedData)
 
    
-    const data = await Todo.create({
-        title:receivedData.title,
-        description:receivedData.description,
-        priority:receivedData.priority,
-        isDone:false
+    // const data = await Todo.create({
+    //     title:receivedData.title,
+    //     description:receivedData.description,
+    //     priority:receivedData.priority,
+    //     isDone:false
+    // })
+    const data = await Todo.create(req.body)
+    // console.log(data)
+
+    //create status code 201
+    res.status(201).send({
+        error: false,
+        result: data.dataValues
     })
+
 })
 
 app.use(router)
@@ -141,7 +161,7 @@ app.use(router)
 /* ------------------------------------------------------- */
 
 
-// continue from here...
+
 
 const errorHandler = (err, req, res, next) => {
     const errorStatusCode = res.errorStatusCode ?? 500
