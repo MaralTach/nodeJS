@@ -3,8 +3,14 @@
     EXPRESSJS - TODO Project with Sequelize
     
 ------------------------------------------------------- */
-//! Nodejs -de SQL veritabanlarini kullanmak icin, data islemlerini yapmak icin SEQUELIZE isimli modulu kullaniyoruz
-
+//! Nodejs -de SQL veritabanlarini kullanmak icin, data islemlerini yapmak icin SEQUELIZE isimli ORM modulu kullaniyoruz
+//! yeni proje icin yapilacak
+// 1. npm init -y
+// 2. .gitignore //gitignore io giderek create paste
+// 3. .env PORT=800
+// 4. .env'ye SQLITE= ./db.sqlite3 yaz veritabanina birikmek icin
+// 5. npm i express dotenv express-async-errors
+// 6. npm i sequelize sqlite3 
 const express = require("express");
 const app = express();
 
@@ -118,32 +124,51 @@ router.get('/', async (req,res)=>{
 
     //datalarin kayit sayisinida verir findAndCountAll()
        const data = await Todo.findAndCountAll()
+
+
+       res.status(200).send({
+        error: false,
+        result: data
+    })
 })
 
 
+//?  CRUD: Create Read Update Delete
 
 //CREATE TODOyeni todo ekleme
 //* TODO metodlari async dir bunun icin await yapiyoruz ve routari async yapyoruz 
 //create veritabaninda kayit eder
-
+//Executing (default): INSERT INTO `todos` (`id`,`title`,`description`,`priority`,`isDone`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6);
 router.post('/', async (req,res)=>{
-    const receivedData = req.body
+
+    // const receivedData = req.body
     // console.log(receivedData)
 
    
-    const data = await Todo.create({
-        title:receivedData.title,
-        description:receivedData.description,
-        priority:receivedData.priority,
-        isDone:false
+    // const data = await Todo.create({
+    //     title:receivedData.title,
+    //     description:receivedData.description,
+    //     priority:receivedData.priority,
+    //     isDone:false
+    // })
+
+    const data = await Todo.create(req.body)
+    // console.log(data)
+
+    res.status(201).send({
+        error: false,
+        result: data.dataValues
     })
+
 })
 
 //READ TODO:
 router.get('/:id', async(req,res)=>{
 
-    // const data = await Todo.findOne({where: {id: req.params.id}})
-    const data = await Todo.findByPK({where: {id: req.params.id}})
+    // const data = await Todo.findOne({where: {id: req.params.id}}) //TEK BIR KAYIT GETIRECEK olmasi gereken findOne
+
+    //findByPk ilede id okuyabiliriz 
+    const data = await Todo.findByPk(req.params.id)
 
     res.status(200).send({
         error:false,
@@ -151,8 +176,37 @@ router.get('/:id', async(req,res)=>{
     })
 })
 
+//Nodejs de put-patch ayrimi yoktur. guncelliyor. normal sartlarda datanin tumunu gondermen gerekiyor
+router.put('/:id', async (req, res)=>{
+
+    //filter kaydini bul ve newData ile gonderilecek olani guncelle
+    //newdata req.body ile gelecek
+    // const data = await Todo.update({...newData}, {...filter})
+
+    const data = await Todo.update(req.body,{where: {id: req.params.id} })
+    // console.log(data)
+
+    res.status(202).send({
+        error:false,
+        result:data,
+        message:(data[0]>=1 ? 'Updated' : 'Can not updated'),
+        //guncellendikten sonra yeni halini gormek icin:
+        new: await Todo.findByPk(req.params.id) // guncellenmis kaydini goster
+
+    })
+})
+
+
 router.delete('./id:',async (req,res)=>{
-    const data = await Todo.destroy({where: {}})
+    //delete komutu destroy. bir parametre aliyor(neyi sileceksin)
+    // const data = await Todo.destroy({...filter})
+    const data = await Todo.destroy({where:{id:req.params.id}})
+    // console.log(data)
+
+    res.status(204).send({
+        error:false,
+        message:(data>=1 ? 'Deleted' : 'Can not Deleted')
+    })
 })
 
 

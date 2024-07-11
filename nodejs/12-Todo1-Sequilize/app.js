@@ -82,12 +82,12 @@ const Todo = sequelize.define('todos', {
     isDone: {
         type: DataTypes.BOOLEAN,
         allowNull:false,
-        defaultValue:false
-    }
+        defaultValue:false,
+    },
 })
 
 //sync veritabani 0 sa tablo yoksa olusturur. var tabloyu olusturmaz degisikligi algylamaz
-//! sequelize.sync() CREATE TABLE 
+//!  sequelize.sync() // CREATE TABLE 
 
 // degisikligi eklemek icin // !force:true  kullaniyoruz
 // sequelize.sync({force:true})
@@ -132,7 +132,8 @@ router.get('/', async (req,res)=>{
 //create veritabaninda kayit eder
 
 router.post('/', async (req,res)=>{
-    const receivedData = req.body
+
+    // const receivedData = req.body
     // console.log(receivedData)
 
    
