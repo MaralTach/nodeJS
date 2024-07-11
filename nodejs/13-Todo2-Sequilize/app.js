@@ -197,15 +197,16 @@ router.put('/:id', async (req, res)=>{
 })
 
 
-router.delete('./id:',async (req,res)=>{
+router.delete('/:id',async (req,res)=>{
     //delete komutu destroy. bir parametre aliyor(neyi sileceksin)
     // const data = await Todo.destroy({...filter})
-    const data = await Todo.destroy({where:{id:req.params.id}})
-    // console.log(data)
+    const data = await Todo.destroy({where: {id: req.params.id}})
+    console.log(data)
 
     res.status(204).send({
         error:false,
-        message:(data>=1 ? 'Deleted' : 'Can not Deleted')
+        result:data,
+        message:(data>=1 ? 'Deleted' : 'data silinemedi Deleted')
     })
 })
 

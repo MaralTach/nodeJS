@@ -60,3 +60,13 @@ kurulumda her sefer mac icin sudo yazmadan kurtulmak icin
   $ sudo chmod -R 777 /usr/local/lib     
 
 ```
+
+HOME BREW kurulu olmazsa bu komut
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+//mongo
+mongodb+srv://yolotenmaral:l4VBkHdETsMbkHlr@cluster0.nmxzmol.mongodb.net/
+
+
+localhost baglanmak icin brew
+brew services start mongodb-community
