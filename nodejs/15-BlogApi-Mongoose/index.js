@@ -4,6 +4,8 @@
 //2.npm i express dotenv express-async-errors
 //.env dosya (echo PORT=800 > .env terminalde)
 // DOSYALAR 1.models 2. contoller 3. routes 4.errorHandler sonra enson routeri index'a baglayacagiz
+
+//ODM - Nosql veritabaninda ORM degil ODM deniliyor Mongoose mongoDB nin ORM moduludur
 /* -------------------------------------------------------
     EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
