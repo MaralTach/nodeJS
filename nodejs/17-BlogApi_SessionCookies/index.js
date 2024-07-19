@@ -22,9 +22,22 @@ require('./src/dbConnection')()
 require('express-async-errors')
 
 /* ------------------------------------------------------- */
+//* npm i cookie-session
+const session = require('cookie-session') //session middlware
+
+app.use(session({
+    secret:process.env.SECRET_KEY,
+    // maxAge:1000 *60 * 60 * 24 *3   //milliseconds // 3 gun oldu 
+
+}))
 
 app.all('/', (req, res) => {
-    res.send('WELCOME TO BLOG API')
+    res.send({
+        session: req.session,
+        message:"Welcome To Blog",
+    })
+
+
 })
 
 /* ------------------------------------------------------- */

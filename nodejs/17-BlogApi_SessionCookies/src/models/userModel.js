@@ -5,7 +5,7 @@
 
 const mongoose = require('mongoose')
 
-/* ------------------------------------------------------- */
+/* ------------------------------------------------------- 
 
 // Password Encrypt (PBKDF2 Method):
 // https://nodejs.org/api/crypto.html#cryptopbkdf2syncpassword-salt-iterations-keylen-digest
@@ -24,6 +24,11 @@ const passwordEncrypt = function (password) {
     return crypto.pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex')
 
 }
+
+/* ------------------------------------------------------- */
+//call from file:
+
+const passwordEncrypt =require('../helpers/passwordEncrypt')
 
 /* ------------------------------------------------------- */
 
