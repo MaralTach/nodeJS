@@ -31,6 +31,10 @@ app.use(express.json())
 require('./src/dbConnection')()
 
 
+//! Catch error from async
+require ('express-async-errors')
+
+
 
 /* ------------------------------------------------------- */
 /* ------------------------------------------------------- */
