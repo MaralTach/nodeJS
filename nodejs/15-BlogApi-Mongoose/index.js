@@ -5,7 +5,7 @@
 //3.npm i mongoose
 //.env dosya (echo PORT=8000 > .env terminalde)
 // DOSYALAR 1.models 2. contoller 3. routes 4.errorHandler sonra enson routeri index'a baglayacagiz
-
+// calisirken 1.INDEX, 2.ROUTER, 3.MODEL, 4.Cotroller
 //ODM - Nosql veritabaninda ORM degil ODM deniliyor Mongoose mongoDB nin ORM moduludur
 //Nosql (iliskisel degil veri tabanimiz MONGOOSE)
 /* -------------------------------------------------------
@@ -47,6 +47,9 @@ app.all('/', (req, res) => {
 })
 
 
+//Routes
+// URL /blog islerine require blogrouter bakiyor. blogrouteri blogrouter fileinda tanimladik.
+app.use('/blog', require('./src/routes/blogRouter'))
 
 
 // Catch Errors:

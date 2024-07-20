@@ -8,12 +8,11 @@ const router = require('express').Router()
 const {blogCategory, blogPost} = require('../controllers/blogController')
 
 /*------------------------------------------------------- */
-//URL: /blog=>
-
+//URL: /blog=> dan sonra  /categoryye post yapilinca onunla blogcategory icinde create ilgilenecek. blogcategory controllerda create islemi tanimladik
 
  //BlogCategory
-router.route('/')
-    .post()
+router.route('/category')
+    .post(blogCategory.create)
 
 
 /*------------------------------------------------------- */

@@ -52,7 +52,7 @@ const BlogCategorySchema = new mongoose.Schema({
 
     //_id
     name:{
-        typr:String,
+        type:String,
         trim:true,
         required:true
     }
@@ -71,10 +71,10 @@ timestamps:true
 const BlogPostSchema = new mongoose.Schema({
 
     categoryId:{
-        type:mongoose.Schema.Types.ObjectId,  //Hesadecimal Format: fedcba9876543210
+        type:mongoose.Schema.Types.ObjectId,  //Hexadecimal Format: fedcba9876543210
         ref:'BlogCategory',    //ID hangi modele ait (mongoose.model('ModelName'. Schema)) ref iliski kurar .ManyToOne default olan iliskidir.  
         required:true,
-        // unique:true   Convert to OneToOne   //buradaki category id foering key ve bunu unique yaparsak 1:1 iliskiye donuser 
+       
     },
     title:{
         type:String,
@@ -106,7 +106,7 @@ const BlogPostSchema = new mongoose.Schema({
 
 // const BlogPost = mongoose.model('BlogPost', BlogPostSchema)  modele boyle ceviriyorduk. altdaki gibi hem modele cevireriz ayni andada export edebiliriz
 
-module.exports={
+module.exports = {
     BlogCategory:mongoose.model('BlogCategory',BlogCategorySchema ),
     BlogPost:mongoose.model('BlogPost', BlogPostSchema)
 }
