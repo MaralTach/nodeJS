@@ -13,16 +13,22 @@ module.exports.blogCategory = {
 
     list: async (req, res) => {
 
+        //listeleme komutumuz find()
         const data = await BlogCategory.find()
+
 
         res.status(200).send({
             error: false,
             result: data
         })
+//listelemeyi blogRouterda cagirdik 
+// router.route('/category')
+//     .get(blogCategory.list)
+//     .post(blogCategory.create) bu sekilde create ve list'i  blogrouter cagirdik
+    
+},
 
-    },
-
-    // CRUD ->
+//!   CRUD ->
 
     create: async (req, res) => {
 
@@ -36,9 +42,10 @@ module.exports.blogCategory = {
 
     },
 
+//? tek bir kayit okumak icin (findOne metodu tek kaydi okumak icin. ve hangi tek kaydi okumasini istiyorsak routerda yeni bir route actik ve /category den sonra bir parametre gonderdik 2nokta ust uste category id yazdik. blogcategory.read sorumlu olucak )
     read: async (req, res) => {
 
-        // const categoryId = req.params.categoryId
+        // const categoryId = req.params.categoryId     //req.params icinde url'den id geliyor  
         // const data = await BlogCategory.findOne({ _id: categoryId })
 
         // const data = await BlogCategory.findOne({ ...filter })
@@ -54,7 +61,7 @@ module.exports.blogCategory = {
     update: async (req, res) => {
 
         // const data = await BlogCategory.updateOne({ ...filter }, { ...data })
-        const data = await BlogCategory.updateOne({ _id: req.params.categoryId }, req.body)
+        const data = await BlogCategory.updateOne({ _id: req.params.categoryId }, req.body) //categoryId deki datayi bul ve ve body'deki girilicek data ile guncelle
         // const data = await BlogCategory.findByIdAndUpdate(req.params.categoryId, req.body)
 
         res.status(202).send({
