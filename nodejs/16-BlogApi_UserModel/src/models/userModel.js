@@ -11,17 +11,17 @@ const mongoose = require('mongoose')
 
 const crypto = require('node:crypto')   //2 nokta ustuste install yapmaya gerek yok 
 
-// Parameters:
+// Parameters:  pbkdf2Sync bu metod altdaki parametreleri alir
 const keyCode = process.env.SECRET_KEY // Şifreleme anahtarı.
 const loopCount = 10_000 // Döngü sayısı
-const charCount = 32 // write 32 for 64
+const charCount = 32 // write 32 for 64  cikti kac karakter olucak
 const encType = 'sha512' // Şifreleme algoritması.
 
 // Return encrypted password:
 const passwordEncrypt = function (password) {
 
     return crypto.pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex')
-
+    //pbkdf2Sync sifreleme parametresi 
 }
 
 /* ------------------------------------------------------- */
@@ -39,9 +39,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        set: (password)=>{
-            return 'maral'
-        }    //veri kaydederken return edilen data kaydi
+        // set: (password)=> passwordEncrypt(password)   //veri kaydederken return edilen data kaydi.gelen sifre ne olursa olsun onu sifreleme fonk.ile kaydet
+        set: passwordEncrypt   //veri kaydederken return edilen data kaydi.gelen sifre ne olursa olsun onu sifreleme fonk.ile kaydet
     },
 
     firstName: String,
