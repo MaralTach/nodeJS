@@ -33,6 +33,33 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         unique: true,
         required: [true, 'Email is required.'],
+         // validate: ()=>{   //eger return =true ise kayderer. eger email formati dogru ise kaydeder
+
+        //! validate kontrol etme 1-nji yontem
+        //     if (email.includes('@') && email.includes ('.')){   
+        //         return true
+        //     }else{
+        //         return false
+        //     }
+        // }
+        
+        //! validate kontrol etme 2-nji yontem
+         // validate: (email) => (email.includes('@') && email.includes('.'))
+
+         //! validate kontrol etme 3-nji yontem
+         validate: [
+            (email) => (email.includes('@') && email.includes('.')),
+            'Email type is incorrect'
+        ]
+
+        //! validate kontrol etme 4-nji yontem
+        // validate: (email) => {
+        //     if (email.includes('@') && email.includes('.')){
+        //         return true
+        //     }else{
+        //         throw new Error ('Email type is incorrect: ' + email) //+ email kullanicinin yanlis girdigi emaili'de ekrana yazdirir 
+        //     }
+        // }
     },
 
     password: {
@@ -40,7 +67,25 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         required: true,
         // set: (password)=> passwordEncrypt(password)   //veri kaydederken return edilen data kaydi.gelen sifre ne olursa olsun onu sifreleme fonk.ile kaydet
-        set: passwordEncrypt   //veri kaydederken return edilen data kaydi.gelen sifre ne olursa olsun onu sifreleme fonk.ile kaydet
+        // set:(password)=>{
+        //     if (password.length>=8){
+        //         return passwordEncrypt(password)
+        //     }else{
+        //         return "wrong"
+        //     }
+        //    },   //veri kaydederken return edilen data kaydi.gelen sifre ne olursa olsun onu sifreleme fonk.ile kaydet. Set methodu validate'dan once calisir 
+    //    validate:(password)=>{
+    //     if (password =='wrong') {
+    //         return false
+
+    //     } else {
+    //         return true
+    //     }
+    //    }
+
+    set: (password) => (password.length >= 8 ?  passwordEncrypt(password) : 'wrong'),
+    validate: (password) => (password != 'wrong') // Güncelleme yaparken default olarak validate çalışmaz. // { runValidators: true }
+
     },
 
     firstName: String,
