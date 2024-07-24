@@ -20,4 +20,3 @@ router
 router.get("/:id/personnels", department.personnels);
 
 module.exports = router;
-
