@@ -31,18 +31,25 @@ require('express-async-errors')
 
 //! isin icine REST api yada API girdigi zaman session veya cookies kullanilmaz TOKEN kullanir.
 /* ------------------------------------------------------- */
-//* npm i cookie-session
+
+/* ------------------------------------------------------- */
+// SessionCookies:
+// http://expressjs.com/en/resources/middleware/cookie-session.html
+// https://www.npmjs.com/package/cookie-session
+//* $ npm i cookie-session
+
 const session = require('cookie-session') //session middlware
 
-app.use(session({
-    secret:process.env.SECRET_KEY,
-    // maxAge:1000 *60 * 60 * 24 *3   //milliseconds // 3 gun oldu 
+//middleware kullanmak icin app.use icinde kullaniyoruz
+app.use(session({  //General Settings 
+    secret:process.env.SECRET_KEY,  //cookie datasi sifrelenerek saklanir
+    // maxAge:1000 * 60 * 60 * 24 * 3   //milliseconds // 3 gun oldu 
 
 }))
 
 app.all('/', (req, res) => {
     res.send({
-        session: req.session,
+        session: req.session,   //datanin saklandigi yer.
         message:"Welcome To Blog",
     })
 
