@@ -21,6 +21,15 @@ require('./src/dbConnection')()
 // Catch error from async:
 require('express-async-errors')
 
+//? localstrogada saklamanin bir omru yok tarayici bellegi manuel olarak silinene kadar saklanir
+
+//? cookiler-> browserda saklanir.  bir omur var ve biz onu belirleyebiliriz 1 gun 3 saat gibi
+/* ------------------------------------------------------- */
+
+//? session -> hem browserda hemde serverde saklanir
+//hepsi data saklamak icindir. sess.cookiesler surelidir omru tarayici oturum kapanana kadar. Sessionlar aslinda cookilerdir. data her zaman cookilerde saklanir. Cookie'ye bir omur vermezsek aslinda o SESSION oluyor
+
+//! isin icine REST api yada API girdigi zaman session veya cookies kullanilmaz TOKEN kullanir.
 /* ------------------------------------------------------- */
 //* npm i cookie-session
 const session = require('cookie-session') //session middlware
@@ -43,6 +52,7 @@ app.all('/', (req, res) => {
 /* ------------------------------------------------------- */
 // Routes:
 
+app.use('/auth', require('./src/routes/authRouter')) // User Model
 app.use('/user', require('./src/routes/userRouter')) // User Model
 app.use('/blog', require('./src/routes/blogRouter')) // BlogCategory & BlogPost
 
