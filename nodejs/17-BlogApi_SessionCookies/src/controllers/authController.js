@@ -31,9 +31,31 @@ module.exports.auth = {
             if(user) {
 
                 if (user.password == passwordEncrypt(password)){
+                    //PSSWORD OK
 
-                    res.send({
-                        message:'Login is successfull'
+                    // res.send({
+                    //     message:'Login is successfull'
+                    // })
+
+                    //* SESSION *
+                    // req.session = {
+                    //     data: 'session-data'
+                    // }
+                    // console.log(req.session) bende calismadi 
+                    // res.send('OK')
+
+                    // req.session = {   //1nji yontem
+                    //         email: user.email,
+                    //         password: user.password
+                    //      }
+
+                    req.session.email = user.email
+                    req.session.password = user.password
+
+                    res.status(200).send({
+                        error:false,
+                        message: 'Login: OK',
+                        user
                     })
 
                 }else{

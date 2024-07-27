@@ -50,7 +50,7 @@ app.use(session({  //General Settings
 app.all('/', (req, res) => {
     res.send({
         session: req.session,   //datanin saklandigi yer.
-        message:"Welcome To Blog",
+        message:"Welcome To Blo Api",
     })
 
 
@@ -59,7 +59,7 @@ app.all('/', (req, res) => {
 /* ------------------------------------------------------- */
 // Routes:
 
-app.use('/auth', require('./src/routes/authRouter')) // User Model
+app.use('/auth', require('./src/routes/authRouter')) // User Model-login logout
 app.use('/user', require('./src/routes/userRouter')) // User Model
 app.use('/blog', require('./src/routes/blogRouter')) // BlogCategory & BlogPost
 
