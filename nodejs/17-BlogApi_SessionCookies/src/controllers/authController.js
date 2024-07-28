@@ -52,6 +52,16 @@ module.exports.auth = {
                     // req.session.email = user.email
                     req.session._id = user._id
                     req.session.password = user.password
+                    /* SESSION */
+                    
+                    if (req.body?.remindMe == true){
+                        req.session.remindMe = true
+
+                        // SET MaxAge
+                        req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3
+                    }
+                    
+                    /* COOKIE */
 
                     res.status(200).send({
                         error:false,

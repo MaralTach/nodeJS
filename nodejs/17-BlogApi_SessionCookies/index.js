@@ -47,10 +47,17 @@ app.use(session({  //General Settings
 
 }))
 
+
+//! 1. middleware routelerden once cagirilir
+//! 2. sessionda bir user varsa onu kontrol edecegin bir middleware
+app.use(require('./src/middlewares/userControl'))
+
+
 app.all('/', (req, res) => {
     res.send({
-        session: req.session,   //datanin saklandigi yer.
         message:"Welcome To Blo Api",
+        session: req.session,   //datanin saklandigi yer.
+        user: req.user
     })
 
 
@@ -65,7 +72,7 @@ app.use('/blog', require('./src/routes/blogRouter')) // BlogCategory & BlogPost
 
 /* ------------------------------------------------------- */
 // Catch Errors:
-app.use(require('./src/errorHandler'))
+app.use(require('./src/middlewares/errorHandler'))
 
 /* ------------------------------------------------------- */
 
