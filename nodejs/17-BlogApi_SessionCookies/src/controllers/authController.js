@@ -49,7 +49,8 @@ module.exports.auth = {
                     //         password: user.password
                     //      }
 
-                    req.session.email = user.email
+                    // req.session.email = user.email
+                    req.session._id = user._id
                     req.session.password = user.password
 
                     res.status(200).send({
@@ -78,6 +79,14 @@ module.exports.auth = {
     },
 
     logout:async (req,res)=>{
+
+        // Session / Cookie datasini silmek icin  null yeterli
+        req.session = null 
+
+        res.status(200).send({
+            error:false,
+            message:'Logout: OK'
+        })
         
     }
 }
