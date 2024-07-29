@@ -14,6 +14,7 @@ const { User } = require('../models/userModel')
 
 
 //! Middlewareler index.js de cagirildiginda  mumkin oldukca route'lerden once cagirilmalidir
+
 module.exports = async (req,res,next) =>{
 
     // console.log(req.session)
