@@ -57,7 +57,8 @@ app.all('/', (req, res) => {
     res.send({
         message:"Welcome To Blo Api",
         session: req.session,   //datanin saklandigi yer.
-        user: req.user
+        user: req.user,
+        isLogin: (req.user ? true : false)
     })
 
 
