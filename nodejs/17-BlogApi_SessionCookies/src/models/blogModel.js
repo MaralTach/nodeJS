@@ -74,6 +74,12 @@ const BlogPostSchema = new mongoose.Schema({
 
     // _id
 
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required: true,
+    },
+
     categoryId: { // Default Relation: ManyToOne
         type: mongoose.Schema.Types.ObjectId, // Hexadecimal Format: 'fedcba9876543210'
         ref: 'BlogCategory', // ID hangi Model'e ait. (mongoose.model('ModelName', Schema))

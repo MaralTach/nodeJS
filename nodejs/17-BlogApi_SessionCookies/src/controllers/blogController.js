@@ -26,6 +26,8 @@ module.exports.blogCategory = {
 
     create: async (req, res) => {
 
+        req.body.userId = req.user?._id
+
         const data = await BlogCategory.create(req.body)
         // console.log(data)
 

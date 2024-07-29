@@ -23,11 +23,16 @@ module.exports = async (req,res,next) =>{
     console.log(req.session)
     
     if (req?.session?._id) {
-        const user = await User.findOne({_id: req.session._id, password: req.session.password })
-        console.log(user)
+        //calismamisti. nedeni-de usermodel deki set metodu.
+        // const user = await User.findOne({_id: req.session._id, password: req.session.password }) password ekleyince calismadi
+        const user = await User.findOne({_id: req.session._id})
+        // console.log(user)
 
-        if (user) {
+    
+        if (user && user.password == req.session.password) {
+
             req.user = user 
+
         }else{
 
             req.session = null 
