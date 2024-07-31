@@ -63,7 +63,7 @@ module.exports = {
     //Convert to JWT:
     const accessToken = jwt.sign(accessData, process.env.ACCESS_KEY,{ expiresIn: '30' })
 
-    //! REFRESH TOKEN
+    //! REFRESH TOKEN 
     const refreshData = {
       _id: user._id,
       password: user.password
@@ -76,6 +76,10 @@ module.exports = {
     res.send({
       error: false,
       token: tokenData.token,
+      bearer: {
+        access: accessToken,
+        refresh: refreshToken
+      },
       user,
     });
   },
