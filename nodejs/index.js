@@ -85,3 +85,4 @@ if (process.env.NODE_ENV == "development") {
     .catch((err) => console.error("Data could not synched"));
 }
 
+//RFC goruyorsaniz standartlara girmistir
