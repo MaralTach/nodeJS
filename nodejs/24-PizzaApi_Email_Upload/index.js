@@ -63,49 +63,55 @@ const nodemailer = require('nodemailer')
 
 */
 
-//Const to MailServer/SMTP
-// const transporter = nodemailer.createTransport({
-
-//   //SMTP:
-//   host: 'smtp.ethereal.email',
-//   port: '587',
-//   secure: 'false',
-//   auth: {
-//     user:'kesuv6rxbb7gquox@ethereal.email',
-//     pass: 'Zng2FA3YwrzjhDj2r5'
-//   }
-
-
-// })
-// // console.log(transporter)
-
-// //SendMail:
 // transporter.sendMail({
 
-//   from: 'kesuv6rxbb7gquox@ethereal.email',
-//   to: 'maral@gmail.com' ,  // , koyarak birden fazla email gonderebiliyorsun
-//   subject: 'Hello',
-//   text: 'Hello There. How are you?',
-//   html: '<p> hello <b>there</b> </br> how do you do <p> ', 
+//     from: 'awxt4bslsuo53z2h@ethereal.email',
+//     to: 'qadir@clarusway.com', // 'abc@def.com, def@ghi.com'
+//     subject: 'Hello',
+//     text: 'Hello There. How are you?',
+//     html: '<p> <b> Hello There </b> <br> How are you? </p>',
 
-// }, function (error,success){
+// }, function (error, success) {
 
-//   success ? console.log('SUCCESS',success) : console.log('ERROR: ', error)
+//     success ? console.log('SUCCESS:', success) : console.log('ERROR: ', error)
+// })
 
+// //* GoogleMail (gmail)
+// //* Google -> AccountHome -> Security -> Two-Step-Verify -> App-Passwords
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: 'qadir@clarusway.com',
+//         pass: 'krkh fxow gujl cjhf'
+//     }
+// })
+
+//* YandexMail (yandex)
+// const transporter = nodemailer.createTransport({
+//     service: 'yandex',
+//     auth: {
+//         user: 'test@yandex.com',
+//         pass: '11' // your email-password
+//     }
+// })
+
+// SendMail:
+// transporter.sendMail({
+
+//     from: 'qadir@clarusway.com',
+//     to: 'qadir@clarusway.com', // 'abc@def.com, def@ghi.com'
+//     subject: 'Hello',
+//     text: 'Hello There. How are you?',
+//     html: '<p> <b> Hello There </b> <br> How are you? </p>',
+
+// }, function (error, success) {
+
+//     success ? console.log('SUCCESS:', success) : console.log('ERROR: ', error)
 // })
 
 
-//? GoogleMail (gmail)
-
 //* 
-const transporter = nodemailer.createTransport({
-
-  service: 'gmail',
-  auth: {
-    user: 'qadir@clarusway.com'
-  }
-
-})
+// 
 
 /* ------------------------------------------------------- */
 // Routes:
