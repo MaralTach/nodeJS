@@ -100,7 +100,7 @@ module.exports.blogPost = {
 
         //? SERACHING & SORTING & PAGINATION
         
-        //? SERACHING:
+        //? SERACHING:  //kismi arama //filter-> tam arama
 
         // const data = await BlogPost.find({ ...filter }, { ...select })
         // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
