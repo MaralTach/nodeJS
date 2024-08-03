@@ -68,5 +68,6 @@ app.listen(PORT, () => console.log('Running: http://127.0.0.1:' + PORT))
 
 /* ------------------------------------------------------- */
 
-//! Syncronization:  1 kere calistirmamiz gerekiyor
+//! Syncronization:  1 kere calistirmamiz gerekiyor  
+//? sync.js dosyasinda butun datalari silen komutlar yazdik. ve tekrar yeni userlar create yapilcak. Ornek datalari ilk defa yazmak icin 
 //   require('./sync')()
