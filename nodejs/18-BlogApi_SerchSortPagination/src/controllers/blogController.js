@@ -103,6 +103,7 @@ module.exports.blogPost = {
         //? SERACHING & SORTING & PAGINATION
 
         //? FILTERING
+        //? mumkin oldukca filter yapin performans olarak daha hizli ve daha etkilidir
         // URL?filter[fieldName1]=value1&filter[fieldName2]=value2
         
         const filter =req.query?.filter || {}
@@ -117,17 +118,40 @@ module.exports.blogPost = {
         const search =req.query?.search || {}
         console.log(search)
         
+
+        //regex'i kullanabilmek icin for dongusu yapiyoruz
         for (let key in search)
             search[key] = { $regex: search[key] }
-        
-        console.log(search)
+
+    
+        // console.log(search)
 
     
 
-        const data = await BlogPost.find(filter)
+        // const data = await BlogPost.find(filter)
+        // const data = await BlogPost.find({...filter, ...search})   //search'i ve filter'i parametre olarak gonderiyoruz //sonra kestik sortun altina yerlestirdik
 
-        //? SORTING
+        //? SORTING  //siralama
+        // URL?sort[fieldName1]=1&sort[fieldName2]=-1   asc ve desc icin kullanilar ama Mongoose 8.0 icin> iptal edildi
         // URL?sort[fieldName1]=value1&sort[fieldName2]=value2
+        // URL?sort[fieldName1]=asc&sort[fieldName2]=desc
+        //
+        const sort =req.query?.sort || {}
+        // console.log(sort)
+
+
+        // const data = await BlogPost.find({...filter, ...search}).sort(sort)
+
+        //? PAGINATION: (SAYFALAMA)
+
+
+        //? LIMIT
+        //URL?page=3&limits=15
+
+        let limit = Number(req.query?.limit || 10 )    //limitden bir sayfa gelebilir gelmezse sayfabasi 10 olsun
+        console.log(limit, typeof limit)
+
+        const data = await BlogPost.find({...filter, ...search}).sort(sort).limit(limit)  //query ile gelen sort'u parametre olarak gonderiyoruz
 
         // const data = await BlogPost.find({ ...filter }, { ...select })
         // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
