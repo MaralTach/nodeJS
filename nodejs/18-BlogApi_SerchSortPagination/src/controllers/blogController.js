@@ -148,7 +148,7 @@ module.exports.blogPost = {
         //? LIMIT
         //URL?page=3&limits=15
 
-        let limit = Number(req.query?.limit || 10 )    //limitden bir sayfa gelebilir gelmezse sayfabasi 10 olsun
+        let limit = Number(req.query?.limit || (process.env?.PAGE_SIZE || 20) )   //limitden bir sayfa gelebilir gelmezse sayfabasi .... olsun
         console.log(limit, typeof limit)
 
         const data = await BlogPost.find({...filter, ...search}).sort(sort).limit(limit)  //query ile gelen sort'u parametre olarak gonderiyoruz
