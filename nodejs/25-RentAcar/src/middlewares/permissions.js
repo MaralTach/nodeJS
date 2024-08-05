@@ -4,6 +4,7 @@
 ------------------------------------------------------- */
 // Middleware: permissions
 const message = "Your account is not active. Please contact support.";
+const CustomError = require('../errors/customError')
 
 module.exports = {
   isLogin: (req, res, next) => {
@@ -17,12 +18,17 @@ module.exports = {
     }
   },
   isStaffOrisAdmin: (req, res, next) => {
-    if (!(req.user?.isActive && (req.user.isAdmin || req.user.isStaff))) {
+    if (!(req.user.isAdmin || req.user.isStaff)) {
       res.errorStatusCode = 403;
       throw new Error(
         "AuthorizationError: You must be an Admin or Staff to access this resource.",
       );
     }
+
+    if(!req.user?.isActive){
+      throw new CustomError 
+    }
+
     next();
   },
   isAdmin: (req, res, next) => {
