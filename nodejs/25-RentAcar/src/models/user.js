@@ -13,6 +13,7 @@
 /* ------------------------------------------------------- */
 
 const { mongoose } = require("../configs/dbConnection");
+const emailValidation = require("../helpers/emailValidation");
 const passwordEncrypt = require("../helpers/passwordEncrypt");
 const uniqueValidator = require("mongoose-unique-validator");
 // User Model:
@@ -30,20 +31,16 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       required: true,
       set: (password) => passwordEncrypt(password),
-      // selected:false
+      // select:false
     },
 
     email: {
       type: String,
       trim: true,
       required: [true, "An Email address is required"],
-      unique: [true, "There is this email. Email field must be unique"],
+      unique: true,
       validate: [
-        (email) => {
-          const regexEmailCheck =
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-          return regexEmailCheck.test(email);
-        },
+        (email) => emailValidation(email),
         "Email format is not valid",
       ],
     },
@@ -65,6 +62,14 @@ const UserSchema = new mongoose.Schema(
   },
   { collection: "users", timestamps: true },
 );
+
+UserSchema.set("toJSON", {
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+  },
+});
 
 UserSchema.plugin(uniqueValidator, {
   message: "This {PATH} is exist",

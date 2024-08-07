@@ -33,12 +33,73 @@ const uniqueValidator = require("mongoose-unique-validator");
 // Car Model:
 
 const CarSchema = new mongoose.Schema(
-  {},
+  {
+    plateNumber: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
+
+    brand: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+
+    model: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    year: {
+      type: Number,
+      trim: true,
+      required: true,
+      min: 2020,
+      max: new Date().getFullYear(),
+    },
+    isAutomatic: {
+      type: Boolean,
+      default: false,
+    },
+    pricePerDay: {
+      type: Number,
+      required: true,
+    },
+    images: {
+      type: [String],
+      default: [],
+    },
+    isAvailable: {
+      type: Boolean,
+      default: false,
+    },
+    createdId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    //updatedBy
+    updatedId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
   {
     collection: "cars",
     timestamps: true,
   },
 );
+
+CarSchema.set("toJSON", {
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+  },
+});
 
 CarSchema.plugin(uniqueValidator, {
   message: "This {PATH} is exist",

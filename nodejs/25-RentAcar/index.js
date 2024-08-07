@@ -59,6 +59,13 @@ app.all("/", (req, res) => {
 app.use(require("./src/routes"));
 
 /* ------------------------------------------------------- */
+//not Found middleware
+app.all("*", async (req, res) => {
+  res.status(404).send({
+    error: true,
+    message: "Route not available",
+  });
+});
 
 // errorHandler:
 app.use(require("./src/middlewares/errorHandler"));
@@ -68,4 +75,4 @@ app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`));
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-// require('./src/helpers/sync')()
+require("./src/helpers/sync")();
