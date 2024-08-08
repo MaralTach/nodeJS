@@ -143,15 +143,19 @@ module.exports.blogPost = {
         // const data = await BlogPost.find({...filter, ...search}).sort(sort)
 
         //? PAGINATION: (SAYFALAMA)
-
-
         //? LIMIT
         //URL?page=3&limits=15
 
         let limit = Number(req.query?.limit || (process.env?.PAGE_SIZE || 20) )   //limitden bir sayfa gelebilir gelmezse sayfabasi .... olsun
         console.log(limit, typeof limit)
 
-        const data = await BlogPost.find({...filter, ...search}).sort(sort).limit(limit)  //query ile gelen sort'u parametre olarak gonderiyoruz
+        //? skip => atlama
+        let skip = Number(req.query?.skip)   //request query'den gelen Numbere cevir
+        skip = skip > 0 ? skip : 0
+        //skip genelde limitin oncesine yazilir
+        // http://127.0.0.1:8000/blog/post?skip=5&limit=2    5tanesi atla ve ondan sonraki 2 kayidi getir
+
+        const data = await BlogPost.find({...filter, ...search}).sort(sort).skip(skip).limit(limit)  //query ile gelen sort'u parametre olarak gonderiyoruz
 
         // const data = await BlogPost.find({ ...filter }, { ...select })
         // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
