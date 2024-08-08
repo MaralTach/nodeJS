@@ -149,11 +149,18 @@ module.exports.blogPost = {
         let limit = Number(req.query?.limit || (process.env?.PAGE_SIZE || 20) )   //limitden bir sayfa gelebilir gelmezse sayfabasi .... olsun
         console.log(limit, typeof limit)
 
-        //? skip => atlama
+        //? PAGE ->  sayfanumarasi 
+        let page = Number(req.query?.page)
+        page = page > 0 ? page : 0   //page sifirdan buyukse page olarak kabul et, sifirdan kucukse 0 kabul et
+
+        //? SKip => atlama
+        
         let skip = Number(req.query?.skip)   //request query'den gelen Numbere cevir
-        skip = skip > 0 ? skip : 0
+        skip = skip > 0 ? skip : ((page-1) * limit )    //atlama degerini belirlemek icin page kac ise -1 yap ve onu limitle carp
         //skip genelde limitin oncesine yazilir
         // http://127.0.0.1:8000/blog/post?skip=5&limit=2    5tanesi atla ve ondan sonraki 2 kayidi getir
+
+
 
         const data = await BlogPost.find({...filter, ...search}).sort(sort).skip(skip).limit(limit)  //query ile gelen sort'u parametre olarak gonderiyoruz
 
