@@ -153,7 +153,7 @@ module.exports.blogPost = {
         let page = Number(req.query?.page)
         page = page > 0 ? page : 0   //page sifirdan buyukse page olarak kabul et, sifirdan kucukse 0 kabul et
 
-        //? SKip => atlama
+        //? SKIP => atlama
         
         let skip = Number(req.query?.skip)   //request query'den gelen Numbere cevir
         skip = skip > 0 ? skip : ((page-1) * limit )    //atlama degerini belirlemek icin page kac ise -1 yap ve onu limitle carp
