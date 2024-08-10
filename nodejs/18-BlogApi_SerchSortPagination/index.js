@@ -39,6 +39,9 @@ app.use(session({ // General Settings.
 
 app.use(require('./src/middlewares/userControl'))
 
+//Middleware for queryHandler (Search, Sort, Page)
+app.use(require('./src/middlewares/findSearchSortPage'))
+
 /* ------------------------------------------------------- */
 
 app.all('/', (req, res) => {
