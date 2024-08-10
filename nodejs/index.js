@@ -87,3 +87,11 @@ if (process.env.NODE_ENV == "development") {
 }
 
 //RFC goruyorsaniz standartlara girmistir
+
+
+
+
+
+
+
+
