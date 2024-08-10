@@ -75,10 +75,38 @@ module.exports = async (req, res, next) => {
         // const data = await BlogPost.find({...filter, ...search}).sort(sort).skip(skip).limit(limit).populate('categoryId')  //query ile gelen sort'u parametre olarak gonderiyoruz
         //populate yazdigimizda daha detayli geliyor
 
+
         // burada BlogPost modelini kullanabilmek icin bir fonksion olusturuyoruz. Modeli parametre olarak gonderecegiz 
+        //GetModelList
     res.getModelList = async function (Model, populate = null){  //populate her zaman ihtiyac olmadigi icin deafault degerini null yapiyoruz
 
         return await Model.find({...filter, ...search}).sort(sort).skip(skip).limit(limit).populate(populate)
+    }
+
+    res.getModelListDetails = async function (Model){
+        
+        const data = await Model.find({...filter, ...search})
+
+        let details = {
+            filter,
+            search,
+            sort,
+            skip,
+            limit,
+            page,
+            pages:{
+                previos:(page > 1 ? page -1 : false), 
+                cmurrent: page,
+                next: page + 1,
+                total:Math.ceil(data.length / limit)
+            },
+            totalRecords: data.length
+        }
+
+        details.pages.next = (details.page.next > details.pages.total ? false : details.pages.next )
+        if (details.totalRecords <= limit) details.pages = false
+        
+        return details
     }
 
     next()
