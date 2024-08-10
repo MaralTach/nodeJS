@@ -162,7 +162,8 @@ module.exports.blogPost = {
 
 
 
-        const data = await BlogPost.find({...filter, ...search}).sort(sort).skip(skip).limit(limit)  //query ile gelen sort'u parametre olarak gonderiyoruz
+        const data = await BlogPost.find({...filter, ...search}).sort(sort).skip(skip).limit(limit).populate('categoryId')  //query ile gelen sort'u parametre olarak gonderiyoruz
+        //populate yazdigimizda daha detayli geliyor
 
         // const data = await BlogPost.find({ ...filter }, { ...select })
         // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
