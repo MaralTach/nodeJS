@@ -6,7 +6,7 @@ const Department = require("../models/department.model");
 
 module.exports = {
   list: async (req, res) => {
-    const data = await res.getModelList(Department);
+    const data = await res.getModelList(Department);//listeleme yapmasi icin
 
     res.status(200).send({
       error: false,

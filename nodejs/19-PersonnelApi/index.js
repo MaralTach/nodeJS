@@ -6,6 +6,7 @@
     $ npm i express dotenv mongoose@latest express-async-errors
     $ npm i cookie-session
     $ npm i jsonwebtoken
+    $ npm i -D nodemon   // dependence olarak nodemon yuklenmis olucak
 */
 
 const express = require("express");
