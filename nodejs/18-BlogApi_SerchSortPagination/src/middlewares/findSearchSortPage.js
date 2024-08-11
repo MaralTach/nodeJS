@@ -83,6 +83,7 @@ module.exports = async (req, res, next) => {
         return await Model.find({...filter, ...search}).sort(sort).skip(skip).limit(limit).populate(populate)
     }
 
+    // result vesayri detaylari daha detayli alabilmek icin fonksiyon
     res.getModelListDetails = async function (Model){
         
         const data = await Model.find({...filter, ...search})
