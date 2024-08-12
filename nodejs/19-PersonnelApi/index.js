@@ -28,7 +28,7 @@ require("express-async-errors");
 dbConnection();
 
 //body parser
-app.use(express.json());
+app.use(express.json());  //istek atilindiginda JS'ye donusturur
 
 //httpOnly:true XSS Cross Site Scripting
 app.use(

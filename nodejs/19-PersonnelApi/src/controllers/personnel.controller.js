@@ -17,6 +17,8 @@ module.exports = {
   },
 
   create: async (req, res) => {
+
+    //bri tane admin varsa DATABASEDA BILGI VARMI YOKMU 0donerse true olucak ve  kullanici admin olucak 
     // const isFirstAccount = (await Personnel.countDocuments()) === 0;
     // req.body.isAdmin = isFirstAccount ? true : false;
 
