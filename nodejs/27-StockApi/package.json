@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "debug": "DEBUG=* nodemon"
+    "debug": "DEBUG=express nodemon"
   },
   "keywords": [],
   "author": "CourseName",

@@ -4,7 +4,6 @@
 ------------------------------------------------------- */
 const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- *
-
 {
     "username": "admin",
     "password": "aA?123456",
@@ -36,15 +35,14 @@ const { mongoose } = require('../configs/dbConnection')
     "isAdmin": false
 }
 /* ------------------------------------------------------- */
-
-//User Model:
+// User Model:
 
 const UserSchema = new mongoose.Schema({
 
     username: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
         unique: true,
         index: true
     },
@@ -52,25 +50,27 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         trim: true,
-        require: true,
+        required: true
     },
+
     email: {
         type: String,
         trim: true,
-        require: true,
-        unique: true,
+        required: true,
+        uniqu: true,
         index: true
     },
-    firstName:{
+
+    firstName: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
     },
 
-    lastName:{
+    lastName: {
         type: String,
         trim: true,
-        require: true,
+        required: true,
     },
 
     isActive: {
@@ -88,12 +88,57 @@ const UserSchema = new mongoose.Schema({
         default: false,
     },
 
-
-   },{
-
+}, {
     collection: 'users',
-    timestamps:true
+    timestamps: true
 })
 
-//Exports:
-module.exports = mongoose.model ('User', UserSchema)
+/* ------------------------------------------------------- */
+
+const passwordEncrypt = require('../helpers/passwordEncrypt')
+
+UserSchema.pre('save', function (next){
+
+//    console.log('pre-save calisti')
+//    console.log(this)
+
+  const data = this
+
+   //Email Control:
+   const isEmailValidated = data.email? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
+
+   if (isEmailValidated) {
+    
+    //   console.log('Email is OK')
+
+    const isPasswordValidated = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+
+        if (isPasswordValidated){
+
+            // console.log('Password is OK')
+
+            data.password = passwordEncrypt(data.password)
+
+            
+
+        }else{
+            next (new Error('Password is not validated'))
+        }
+
+   }else{
+
+    // throw new Error('Email is not validated')
+    next (new Error('Email is not validated'))
+   }
+
+    next()
+
+})
+
+    // console.log('presave calisti')
+
+
+/* ------------------------------------------------------- */
+
+// Exports:
+module.exports = mongoose.model('User', UserSchema)
