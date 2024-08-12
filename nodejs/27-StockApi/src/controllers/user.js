@@ -35,6 +35,29 @@ module.exports = {
 
     create: async ( req,res) => {
 
+              /*
+            #swagger.tags = ["Users"]
+            #swagger.summary = "Create User"
+            #swagger.parameters['body'] = {
+                in: 'body',
+                required: true,
+                schema: {
+                    "username": "test",
+                    "password": "1234",
+                    "email": "test@site.com",
+                    "firstName": "test",
+                    "lastName": "test",
+                }
+            }
+        */
+
+            const data = await User.create(req.body)
+
+            res.status(201).send({
+                error:false,
+                data
+            })
+
     },
 
     read: async ( req,res) => {
