@@ -90,6 +90,7 @@ module.exports = {
             }
         */
 
+        // const data = await User.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
         const data = await User.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
 
         res.status(202).send({

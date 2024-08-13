@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        uniqu: true,
+        unique: true,
         index: true
     },
 
@@ -94,51 +94,50 @@ const UserSchema = new mongoose.Schema({
 })
 
 /* ------------------------------------------------------- */
+// https://mongoosejs.com/docs/middleware.html
 
 const passwordEncrypt = require('../helpers/passwordEncrypt')
 
-UserSchema.pre('save', function (next){
+UserSchema.pre(['save', 'updateOne'], function (next) {
 
-//    console.log('pre-save calisti')
-//    console.log(this)
+    // console.log('pre-save çalıştı.')
+    // console.log(this)
 
-  const data = this
+    // Güncellerken: data = this._update || Kaydederken: data = this
+    const data = this?._update ?? this
 
-   //Email Control:
-   const isEmailValidated = data.email? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
+    // Email Control:
+    const isEmailValidated = data.email ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
 
-   if (isEmailValidated) {
-    
-    //   console.log('Email is OK')
+    if (isEmailValidated) {
 
-    const isPasswordValidated = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+        // console.log('Email is OK')
 
-        if (isPasswordValidated){
+        const isPasswordValidated = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
 
-            // console.log('Password is OK')
+        if (isPasswordValidated) {
 
-            data.password = passwordEncrypt(data.password)
+            if (this?._update) {
+                // UPDATE:
+                this._update.password = passwordEncrypt(data.password)
+            } else {
+                // CREATE:
+                this.password = passwordEncrypt(data.password)
+            }
 
-            
+            next()
 
-        }else{
-            next (new Error('Password is not validated'))
+        } else {
+            // throw new Error('Password is not validated.')
+            next(new Error('Password is not validated.'))
         }
-
-   }else{
-
-    // throw new Error('Email is not validated')
-    next (new Error('Email is not validated'))
-   }
-
-    next()
+    } else {
+        // throw new Error('Email is not validated.')
+        next(new Error('Email is not validated.'))
+    }
 
 })
 
-    // console.log('presave calisti')
-
-
 /* ------------------------------------------------------- */
-
 // Exports:
 module.exports = mongoose.model('User', UserSchema)
