@@ -1,0 +1,22 @@
+Docker ve sanal makineler (VM'ler) arasındaki farkı basitçe şöyle açıklayabiliriz:
+
+Yalıtım Seviyesi:
+
+Docker: Docker, işletim sistemi seviyesinde sanal bir ortam sağlar. Aynı işletim sistemi çekirdeğini paylaşan izole edilmiş konteynerler kullanır.
+VM'ler: Sanal makineler, her biri kendi işletim sistemine sahip tam teşekküllü sanal ortamlar sağlar. Fiziksel donanımı taklit eder ve üzerinde çalıştığı ana makineye bağımsızdır.
+Kaynak Kullanımı:
+
+Docker: Konteynerler çok hafif ve hızlıdır çünkü sadece uygulamayı ve ihtiyaç duyduğu bağımlılıkları çalıştırır. İşletim sistemi seviyesinde paylaşım olduğu için daha az kaynak tüketir.
+VM'ler: VM'ler daha fazla kaynak gerektirir çünkü her VM, kendi işletim sistemi ve tam bir donanım simülasyonu ile birlikte gelir.
+Başlatma Süresi:
+
+Docker: Konteynerler saniyeler içinde başlatılabilir çünkü sadece gerekli uygulama ve bağımlılıkları yükler.
+VM'ler: VM'lerin başlatılması daha uzun sürebilir çünkü tam bir işletim sistemi ve donanım simülasyonu yüklenir.
+Taşınabilirlik:
+
+Docker: Docker konteynerleri, bir sunucudan diğerine taşınması kolaydır ve işletim sisteminden bağımsızdır, bu da taşınabilirliği artırır.
+VM'ler: VM'ler taşınabilir olabilir, ancak her VM'in işletim sistemi ile birlikte taşınması gerektiği için daha ağırdır.
+Özetle, Docker konteynerler, daha hafif ve hızlı çözümler sunarken, VM'ler daha fazla kaynak gerektiren ancak daha geniş izolasyon sağlayan tam sanal ortamlar sunar.
+
+
+//!  1 dockers calistirmak icin 

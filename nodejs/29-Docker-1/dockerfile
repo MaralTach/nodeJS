@@ -1,0 +1,23 @@
+# altyapi
+FROM node:current-alpine3.20  
+
+
+#  calisma alani
+WORKDIR /app
+
+#  dosyalari aktar diyoruz
+
+# tekli file varsa bu yontem
+COPY hello.js /app
+
+#  birden fazla dosya varsa dizinde onun icin kullaniriz
+COPY . . 
+
+#  Komut Calistirma
+# ! 1. bu birinji komut bazen sikinti cikarabiliyor
+# CMD node hello.js   
+
+#  ! 2. yontem
+CMD ["node", "hello.js"]
+
+
