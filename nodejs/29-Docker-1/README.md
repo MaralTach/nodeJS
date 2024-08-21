@@ -135,6 +135,7 @@ https://docs.docker.com/
     $ docker run <imagename>
     # Image'den Container aç ve container'a isim ver:
     $ docker run --name <containername> <imagename>
+    # $ docker run --name backend2 -p 8000:8000 backend  
 
     # Container'leri listele:
     $ docker container ls
@@ -149,6 +150,9 @@ https://docs.docker.com/
     $ docker rm <containername> -f
     # Container'leri sil (kullanılmayanlar):
     $ docker container prune -f
+
+
+    $ docker system prune -a -f
 
     # Interaktif modda aç:
     $ docker run -it <imagename> sh
