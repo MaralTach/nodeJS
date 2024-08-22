@@ -9,36 +9,37 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-
-
 /* ------------------------------------------------------- */
 // Accept json data and convert to object:
 app.use(express.json())
+// Accept form data and convert to object:
+app.use(express.urlencoded({ extended: true }))
 
 // AsyncErrors to errorHandler:
 require('express-async-errors')
 
 /* ------------------------------------------------------- */
-
-
-//Templates EJS populer template motorudur
-// kullanimi daha kolay ve anlisilirdir
-// 1. npm i ejs
-
+// TEMPLATES:
+// $ npm i ejs
+// https://ejs.co/
 
 app.set('view engine', 'ejs')
+// Default template folder: ./views
+app.set('views', './public')
 
-//default templates folder: ./views
 
-// app.set('views', './public')
+app.all('/', (req ,res) => {
 
-//tarayicilarda yaptigimiz her islem get islemleridir. sadece form islemlemlerde put gonderebiliriz
-
-app.all('/', (req, res)=>{
-
-    res.render('index.ejs')
+    // ./views klasörü içindeki dosyayı çağır:
+    // res.render('index.ejs')
+    // res.render('index')
+    res.send(`
+        <p><a href="/view">Todo Template</a></p>    
+        <p><a href="/api">Todo RestAPI</a></p>    
+    `)
 
 })
+
 
 /* ------------------------------------------------------- */
 // ROUTES:
@@ -46,7 +47,8 @@ app.all('/', (req, res)=>{
 // Model, controller'da kullanılacağı için orada require edilmelidir.
 // const Todo = require('./app/models/todo.model')
 
-app.use(require('./app/routes/todo.router'))
+app.use('/view', require('./app/routes/todo.router.view'))
+app.use('/api', require('./app/routes/todo.router.api'))
 
 /* ------------------------------------------------------- */
 // ErrorHandler:

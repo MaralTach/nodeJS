@@ -179,6 +179,7 @@ version: "3.9" # opsiyonel.
 services:
 
     frontend:
+    docker run -d -p 5173:5173 --name frontend frontend    // front end calistirmak icin
         # container_name: frontend # (default:key)
         image: "docker-compose-frontend" # image_name
         build: ./frontend # Dockerize edilecek klasör (dockerfile)
