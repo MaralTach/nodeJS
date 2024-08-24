@@ -8,6 +8,10 @@
     $ npm i jsonwebtoken
 */
 
+/* ------------------------------------------------------- *
+session ve cookie api servislerinde kullanilmaz
+/* ------------------------------------------------------- */
+
 const express = require("express");
 const { dbConnection, mongoose } = require("./src/configs/dbConnection");
 const app = express();
@@ -53,6 +57,9 @@ app.all("/", (req, res) => {
     isLogin: req.isLogin,
   });
 });
+//auth
+app.use('/auth' , require('./src/routes/authRouter'))
+
 
 //departments
 app.use("/departments", require("./src/routes/department.router"));
