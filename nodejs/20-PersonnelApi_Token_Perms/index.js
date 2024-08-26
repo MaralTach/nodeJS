@@ -64,6 +64,9 @@ app.use('/auth' , require('./src/routes/authRouter'))
 //departments
 app.use("/departments", require("./src/routes/department.router"));
 
+//tokens
+app.use("/tokens", require("./src/routes/token.router"));
+
 //personnels
 app.use("/personnels", require("./src/routes/personnel.router"));
 
