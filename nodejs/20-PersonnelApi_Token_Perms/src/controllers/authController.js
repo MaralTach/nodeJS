@@ -15,7 +15,7 @@ module.exports ={
 
         const {username, password} = req.body
 
-        if (username & password){
+        if (username && password){
 
             const user = await Personnel.findOne({ username })
 
@@ -23,7 +23,28 @@ module.exports ={
 
                 if (user.isActive) {
                     
-                    
+                    //! TOKEN
+                    // daha once bu kullaniciya ait token olusturmusmuyum ? Token varmi?
+                    let tokenData = await Token.findOne( {userId: user._id})
+
+                    // token yoksa olustur!
+
+                    if (!tokenData) {
+                        tokenData = await Token.create({
+                            userId: user._id,
+                            token: passwordEncrypt(user._id + Date.now())
+                        })
+                    }
+
+                    res.status(200).send({
+
+                        error: false,
+                        token: tokenData.token,
+                        user
+
+                    })
+
+                    //! TOKEN 
 
                 } else {
                     
