@@ -22,7 +22,7 @@ module.exports ={
             if (user && user.password == passwordEncrypt(password)){
 
                 if (user.isActive) {
-                    
+                    res.send()
                     //! TOKEN
                     // daha once bu kullaniciya ait token olusturmusmuyum ? Token varmi?
                     let tokenData = await Token.findOne( {userId: user._id})
@@ -65,6 +65,7 @@ module.exports ={
     },
     
     logout:async (req,res) =>{
+
 
 
     },
