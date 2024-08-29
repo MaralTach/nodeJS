@@ -4,21 +4,20 @@
 ------------------------------------------------------- */
 
 const { mongoose } = require("../configs/dbConnection");
+
 /* ------------------------------------------------------- *
-
- {
-    "userId": "66cdd789a705541ca49385ae",
-    "token":"random sayi verebilirsin"
-  }
+{
+    "userId": "66a13e516d7779078d0458e8",
+    "token": "random-chars-to-here"
+}
 /* ------------------------------------------------------- */
-
-//Token Model:
+// Token Model:
 
 const TokenSchema = new mongoose.Schema({
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Personnel',
+        ref: 'Personnel',
         required: true,
         index: true
     },
@@ -31,11 +30,12 @@ const TokenSchema = new mongoose.Schema({
         index: true
     }
 
+}, {
 
-},{
     collection: 'tokens',
     timestamps: true
+
 })
 
 /* ------------------------------------------------------- */
-module.exports = mongoose.model("Token", TokenSchema)
+module.exports = mongoose.model('Token', TokenSchema)

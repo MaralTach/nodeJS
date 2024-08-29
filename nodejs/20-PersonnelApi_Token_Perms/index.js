@@ -8,10 +8,6 @@
     $ npm i jsonwebtoken
 */
 
-/* ------------------------------------------------------- *
-session ve cookie api servislerinde kullanilmaz
-/* ------------------------------------------------------- */
-
 const express = require("express");
 const { dbConnection, mongoose } = require("./src/configs/dbConnection");
 const app = express();
@@ -45,9 +41,8 @@ app.use(
   }),
 );
 
-//Authentication
+// Authentication Middleware:
 app.use(require('./src/middlewares/authentication'))
-
 
 // res.getModelList():
 app.use(require("./src/middlewares/findSearchSortPage"));
@@ -57,21 +52,22 @@ app.all("/", (req, res) => {
   res.send({
     error: false,
     message: "Welcome to PERSONNEL API",
-    session: req.session,
-    isLogin: req.isLogin,
+    // session: req.session,
+    // isLogin: req.isLogin,
+    user: req.user
   });
 });
-//auth
-app.use('/auth' , require('./src/routes/authRouter'))
 
+// /auth
+app.use('/auth', require('./src/routes/auth.router'))
 
-//departments
-app.use("/departments", require("./src/routes/department.router"));
-
-//tokens
+// /tokens
 app.use("/tokens", require("./src/routes/token.router"));
 
-//personnels
+// /departments
+app.use("/departments", require("./src/routes/department.router"));
+
+// /personnels
 app.use("/personnels", require("./src/routes/personnel.router"));
 
 //not found routes
