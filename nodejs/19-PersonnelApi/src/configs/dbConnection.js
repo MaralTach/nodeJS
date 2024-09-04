@@ -10,7 +10,7 @@ const dbConnection = function() {
     // Connect:
     mongoose.connect(process.env.MONGODB)
         .then(() => console.log('* DB Connected * '))
-        .catch((err) => console.log('* DB Not Connected * ', err))
+        .catch((err) => console.log('* DB NOT Connected * ', err))
 }
 
 /* ------------------------------------------------------- */
