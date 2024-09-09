@@ -1,0 +1,10 @@
+//! LOG Kaydi
+
+public sayfa icin log kayitlarini tutmak zorundayiz. log kaydi nedir? hangi ip adresi hangi bilgisayar nezaman nereye hangi url ye erismis devlet bunu kaydetmeyi rica ediyor. ilk 1 sene zorunlu 1 sene sonra arsive kaldirilar. tutmazsaniz cezasi var. 10 sene saklamak zorunda. ilk 1veya 2 sene kendi sisteminizde 9 sene baska serverda tutabilirsin
+
+Express js log tutmanin farkli yollari var. Morgan resmi olarak Express js onerdigi.
+Winston da var log kaydi tutmak icin
+
+1.npm install morgan
+2. require edilir   
+ MORGAn bir middleware dir. app.use ile kullanilir. morgan default olarak consola yazar
