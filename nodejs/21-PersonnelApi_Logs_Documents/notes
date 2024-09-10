@@ -8,3 +8,5 @@ Winston da var log kaydi tutmak icin
 1.npm install morgan
 2. require edilir   
  MORGAn bir middleware dir. app.use ile kullanilir. morgan default olarak consola yazar
+
+ 

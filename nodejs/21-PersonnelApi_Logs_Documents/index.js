@@ -53,9 +53,9 @@ const morgan = require('morgan')
 // app.use(morgan('short'))
 // app.use(morgan('dev'))
 // app.use(morgan('common'))
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 // Custom Log:
-// app.use(morgan('TIME=":date[iso]" - URL=":url" - Method=":method" - IP=":remote-addr" - Ref=":referrer" - Status=":status" - Sign=":user-agent" (:response-time[digits] ms)'))
+app.use(morgan('TIME=":date[iso]" - URL=":url" - Method=":method" - IP=":remote-addr" - Ref=":referrer" - Status=":status" - Sign=":user-agent" (:response-time[digits] ms)'))
 
 // Write to File:
 // const fs = require('node:fs')
