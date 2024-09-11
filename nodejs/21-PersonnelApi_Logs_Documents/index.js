@@ -55,12 +55,13 @@ const morgan = require('morgan')
 // app.use(morgan('common'))
 // app.use(morgan('combined'))
 // Custom Log:
-app.use(morgan('TIME=":date[iso]" - URL=":url" - Method=":method" - IP=":remote-addr" - Ref=":referrer" - Status=":status" - Sign=":user-agent" (:response-time[digits] ms)'))
+// app.use(morgan('TIME=":date[iso]" - URL=":url" - Method=":method" - IP=":remote-addr" - Ref=":referrer" - Status=":status" - Sign=":user-agent" (:response-time[digits] ms)'))
 
 // Write to File:
-// const fs = require('node:fs')
+//fs-modulu NodeJS de dosya islemlerini yaptigimiz model. Ekle-sil
+// const fs = require('node:fs')  //builtin model oldugu icin :fs
 // app.use(morgan('combined', {
-//     stream: fs.createWriteStream('./access.log', { flags: 'a+' })
+//     stream: fs.createWriteStream('./access.log', { flags: 'a+' })   //2nji parametre ayarlar.stream-akisi. flagsbutun dillerde bir dosya acma kapama islemleri icin kullanilir .dosyaya nasil davranacagini anlatan isim  
 // }))
 
 // Write to File - Day by day:
