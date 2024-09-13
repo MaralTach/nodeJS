@@ -76,6 +76,15 @@ const today = now.toISOString().split('T')[0]
 
 /* ------------------------------------------------------- */
 
+//DOCUMENTAION
+// $ npm i swagger-autogen # JSON creator
+// $ npm i swagger-ui-express # JSON UI
+// $ npm i redoc-express 
+
+
+
+/* ------------------------------------------------------- */
+
 // Morgan Logger:
 app.use(require('./src/middlewares/logger'))
 
