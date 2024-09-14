@@ -30,3 +30,25 @@ const options = {
 /* ------------------------------------------------------- */
 
 const swaggerAutogen = require('swagger-autogen')()
+
+const packegeJson = require('./package.json')
+
+const document = {
+	// info:{
+	// 	version:'1.0.0',
+	// 	title:'Personel API',
+	// 	description:'Personel Management System API Service v.1',
+	// 	termOfService: 'http://127.0.0.1:8000/#',
+	// 	contact: {name: 'Clarusway', email: 'yoloten.maral@gmail.com'},
+	// 	license: {name: 'Apache License' }
+	// },
+
+	info:{
+		version: packegeJson.version,
+		title: packegeJson.name,
+		description:packegeJson.description,
+		// termOfService: 'http://127.0.0.1:8000/#',
+		contact: {name: 'Clarusway', email: 'yoloten.maral@gmail.com'},
+		license: {name: 'Apache License' }
+	}
+}
