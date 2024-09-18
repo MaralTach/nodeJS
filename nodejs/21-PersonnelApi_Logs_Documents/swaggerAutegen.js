@@ -49,6 +49,7 @@ const document = {
 		description:packegeJson.description,
 		// termOfService: 'http://127.0.0.1:8000/#',
 		contact: {name: 'Clarusway', email: 'yoloten.maral@gmail.com'},
-		license: {name: 'Apache License' }
+		license: {name: 'Apache License' },
+		
 	}
 }
