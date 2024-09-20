@@ -29,19 +29,26 @@
   "paths": {
     "/auth/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "Login with username and password",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "*String"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "*String"
                 }
               }
             }
@@ -56,97 +63,14 @@
     },
     "/auth/logout": {
       "get": {
-        "description": "",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "Get delete token.",
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      }
-    },
-    "/tokens/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "responses": {
-          "201": {
-            "description": "Created"
-          }
-        }
-      }
-    },
-    "/tokens/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Accepted"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "patch": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Accepted"
           }
         }
       }
@@ -605,7 +529,7 @@
             },
             "default": {
               "type": "number",
-              "example": 1726830400435
+              "example": 1726866385215
             }
           }
         }

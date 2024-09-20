@@ -93,7 +93,9 @@ const swaggerJson = require('./swagger.json')
 //!serve metodu gerekli goruntini alir. SETUP asil swaggeri cagirar 2 parametre alir.  {persistAuthorization:true tokenin hafizada kalmasi icin ayar
 app.use('/documents/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson, {swaggerOptions: {persistAuthorization:true} }))  
 
-
+//REDOC
+const redoc = require('redoc-express')
+app.use('/documents/redoc', redoc({ specUrl: '/documents/json', title: 'Redoc UI' }))
 
 
 
