@@ -51,5 +51,19 @@ const document = {
 		contact: {name: 'Clarusway', email: 'yoloten.maral@gmail.com'},
 		license: {name: 'Apache License' },
 		
-	}
+	},
+
+	host: `${HOST}:${PORT}`,
+	basePath: '/',
+	schemes: ['http', 'https'],
+	//SimpleToken Setting:
+	securityDefinitions:{
+		Token:{
+			type: 'apiKey',
+			in: 'header',
+			name: 'Authorization',
+			description: 'Simple TokenAuthentication * Example: <b>Token ...tokenKey...<b>'
+		}
+	},
+	security:
 }
