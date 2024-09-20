@@ -65,5 +65,22 @@ const document = {
 			description: 'Simple TokenAuthentication * Example: <b>Token ...tokenKey...<b>'
 		}
 	},
-	security:
+	security: [
+		{ Token: []}
+	],
+
+	//modeller kismi tanimlanar.token model definitionsda yer almaz gizli modeldir
+	definitions: {
+		"Department": require('./src/models/department.model').schema.obj,
+		"Personnel": require('./src/models/personnel.model').schema.obj
+	}
 }
+
+//swagger butun routeler ziyaret edecek ve tek tek onlari alacak
+const routes = ['./index.js']
+const outputFile = './swagger.json'
+
+swaggerAutogen(outputFile,routes, document)
+//calistirmak icin yeni terminal acarak //! node swaggerAutogen.js  yaziyoruz terminalde
+
+//! her sefer yenilemek istersek swagger.jsoni node swaggerAutogen.js  yaziyoruz terminalde
