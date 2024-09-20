@@ -69,7 +69,7 @@ const document = {
 		{ Token: []}
 	],
 
-	//modeller kismi tanimlanar.token model definitionsda yer almaz gizli modeldir
+	//modeller kismi tanimlanar.token model definitionsda yer almaz gizli modeldir. baska projelerde kullanmak icin sadece burasi degisicek
 	definitions: {
 		"Department": require('./src/models/department.model').schema.obj,
 		"Personnel": require('./src/models/personnel.model').schema.obj

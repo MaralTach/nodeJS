@@ -54,6 +54,16 @@
         }
       }
     },
+    "/auth/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/tokens/": {
       "get": {
         "description": "",
@@ -595,7 +605,7 @@
             },
             "default": {
               "type": "number",
-              "example": 1726813909293
+              "example": 1726830400435
             }
           }
         }

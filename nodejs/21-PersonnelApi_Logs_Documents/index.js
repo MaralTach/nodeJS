@@ -81,6 +81,20 @@ const today = now.toISOString().split('T')[0]
 // $ npm i swagger-ui-express # JSON UI
 // $ npm i redoc-express 
 
+//JSON'i goruntulemek icin
+app.use('/documents/json', (req,res) =>{
+    res.sendFile('swagger.json', {root: '.'})
+})
+
+//SWAGGER goruntileme
+const swaggerUi = require('swagger-ui-express')
+const swaggerJson = require('./swagger.json')
+
+//!serve metodu gerekli goruntini alir. SETUP asil swaggeri cagirar 2 parametre alir.  {persistAuthorization:true tokenin hafizada kalmasi icin ayar
+app.use('/documents/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson, {swaggerOptions: {persistAuthorization:true} }))  
+
+
+
 
 
 /* ------------------------------------------------------- */
