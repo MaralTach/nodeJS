@@ -42,7 +42,7 @@ module.exports = {
 
   read: async (req, res) => {
     /*
-         _swagger.deprecated = true
+        _swagger.deprecated = true
         #swagger.ignore = true
         */
 
