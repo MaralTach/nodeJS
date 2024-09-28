@@ -39,7 +39,7 @@ module.exports = (req, res, next) => {
 
     let page = Number(req.query?.page)
     page = page > 0 ? (page - 1) : 0 // Backend'de sayfa sayısı her zaman (page - 1)'dir.
-    // console.log(typeof page, page)
+    console.log(typeof page, page)
 
     let skip = Number(req.query?.skip)
     skip = skip > 0 ? skip : (page * limit)
